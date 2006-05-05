@@ -1,7 +1,7 @@
 <!--
 
 Hamada wad 100 100
-
+Tanahy
 -->
 <pre>
     <sql:query var="biso">
