@@ -1,5 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<!-- this is atest -->
 <pre>
     <sql:query var="biso">
         SELECT biso as hh FROM test
