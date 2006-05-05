@@ -1,4 +1,8 @@
-<!-- this is atest -->
+<!--
+
+Hamada wad 100 100
+
+-->
 <pre>
     <sql:query var="biso">
         SELECT biso as hh FROM test
