@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<link href="css.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	left:565px;
+	top:207px;
+	width:204px;
+	height:139px;
+	z-index:1;
+	visibility: visible;
+}
+-->
+</style>
+<script type="text/JavaScript">
+<!--
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_validateForm() { //v4.0
+  var i,p,q,nm,test,num,min,max,errors='',args=MM_validateForm.arguments;
+  for (i=0; i<(args.length-2); i+=3) { test=args[i+2]; val=MM_findObj(args[i]);
+    if (val) { nm=val.name; if ((val=val.value)!="") {
+      if (test.indexOf('isEmail')!=-1) { p=val.indexOf('@');
+        if (p<1 || p==(val.length-1)) errors+='- '+nm+' must contain an e-mail address.\n';
+      } else if (test!='R') { num = parseFloat(val);
+        if (isNaN(val)) errors+='- '+nm+' must contain a number.\n';
+        if (test.indexOf('inRange') != -1) { p=test.indexOf(':');
+          min=test.substring(8,p); max=test.substring(p+1);
+          if (num<min || max<num) errors+='- '+nm+' must contain a number between '+min+' and '+max+'.\n';
+    } } } else if (test.charAt(0) == 'R') errors += '- '+nm+' is required.\n'; }
+  } if (errors) alert('The following error(s) occurred:\n'+errors);
+  document.MM_returnValue = (errors == '');
+}
+//-->
+</script>
+</head>
+<body>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="2">
+  <!--DWLayoutTable-->
+  <tr>
+    <td height="193" colspan="2" id="hearder"><img src="images/oec.jpg" width="640" height="181" alt="BackGround" /> </td>
+  </tr>
+  <tr>
+    <td width="366" height="110" valign="top"><h1>Welcome</h1>
+      <p><em>Welcome to OEC</em>,</p>
+      <p>If this is your first visit, <a href="register.jsp">register</a> here to enjoy our services.</p></td>
+    <td width="272" align="center" valign="top"><form action="" method="post" name="form1" id="form1" onsubmit="MM_validateForm('ID','','R','password','','R');return document.MM_returnValue">
+        <table width="200" border="0" cellspacing="2" cellpadding="2">
+          <tr>
+            <th height="30" colspan="2">Login here</th>
+          </tr>
+          <tr>
+            <td>Your ID: </td>
+            <td><label>
+              <input name="ID" type="text" id="ID" size="20" maxlength="20" />
+              </label></td>
+          </tr>
+          <tr>
+            <td>Password:</td>
+            <td><label>
+              <input name="password" type="text" id="password" size="20" maxlength="20" />
+              </label></td>
+          </tr>
+          <tr>
+            <td>Type:</td>
+            <td><label>
+              <select name="select">
+                <option value="student" selected="selected">Student</option>
+                <option value="teacher">Teacher</option>
+              </select>
+            </label></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" name="Submit" value="Submit" /></td>
+          </tr>
+        </table>
+        <p>&nbsp; </p>
+      </form></td>
+  </tr>
+  <tr>
+    <td height="44" colspan="2" id="footer"><p>Copyright 2006 MUFIC.</p>
+      <p>Prototype v01, 15 March 2006 </p></td>
+  </tr>
+</table>
+</body>
+</html>
