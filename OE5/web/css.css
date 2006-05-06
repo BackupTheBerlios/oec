@@ -56,7 +56,7 @@ a:hover {
     text-decoration: underline;
 }
 
-/*********************************************************************************************************/
+
 
 
 #hearder{
@@ -67,7 +67,7 @@ a:hover {
 	border-bottom: #0099FF 2px solid;
 	font-size:12px;
 	font-weight:bold;
-	background:url(images/oec.jpg) right no-repeat ;
+	background:url(/OE/images/oec.jpg) right no-repeat ;
 	vertical-align:bottom;
 		
 }
