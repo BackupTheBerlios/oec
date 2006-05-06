@@ -82,7 +82,7 @@ Abbas Adel
 </c:if>
 
 <c:if test="${NewMessages.rowCount == 0 ||  OldMessages.rowCount == 0}" >
-    <jsp:forward page="../CP.jsp?action=status" >
+    <jsp:forward page="../CP.jsp?action=status&subaction=summary" >
         <jsp:param name="ErrorMessage" 
         value="There is no messages in your inbox"/>
     </jsp:forward>
