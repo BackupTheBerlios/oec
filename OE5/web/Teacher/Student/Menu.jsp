@@ -21,7 +21,7 @@ Abbas Adel
             <a href="CP.jsp?action=student&subaction=list" >List</a>
         </li>
         <li class="${param.subaction == 'view'? 'current':''}">
-            <a href="CP.jsp?action=student&subaction=add">View</a>
+            <a href="CP.jsp?action=student&subaction=view">View</a>
         </li>
     </ul>
 

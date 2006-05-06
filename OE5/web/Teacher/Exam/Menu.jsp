@@ -29,6 +29,9 @@ Abbas Adel
         <li class="${param.subaction == 'add'? 'current':''}">
             <a href="CP.jsp?action=exam&subaction=add">Add</a>
         </li>
+        <li class="${param.subaction == 'submit'? 'current':''}">
+            <a href="CP.jsp?action=exam&subaction=submit">Submit</a>
+        </li>
         <li class="${param.subaction == 'edit'? 'current':''}">
             <a href="CP.jsp?action=exam&subaction=edit">Edit</a>
         </li>

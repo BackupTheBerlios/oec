@@ -26,6 +26,8 @@ Abbas Adel
     <c:when test="${param.subaction == 'edit'}"><jsp:include page="Edit.jsp" /></c:when>
     <c:when test="${param.subaction == 'view'}"><jsp:include page="View.jsp" /></c:when>
     <c:when test="${param.subaction == 'edit_update'}"><jsp:include page="Edit_update.jsp" /></c:when>
+     <c:when test="${param.subaction == 'submit'}"><jsp:include page="Submit.jsp" /></c:when>
+    <c:when test="${param.subaction == 'submit_insert'}"><jsp:include page="Submit_insert.jsp" /></c:when>
     <c:otherwise><jsp:include page="List.jsp" /></c:otherwise>
 </c:choose>
 
