@@ -385,11 +385,20 @@ is divided into following sections:
     </target>
     <target name="do-dist" depends="init,compile,compile-jsps,-pre-dist,-do-dist-with-manifest,-do-dist-without-manifest"/>
     <target name="library-inclusion-in-manifest" depends="init" if="dist.ear.dir">
+        <basename property="included.lib.libs.jstl11.classpath.2" file="${libs.jstl11.classpath.libfile.2}"/>
+        <basename property="included.lib.libs.jstl11.classpath.1" file="${libs.jstl11.classpath.libfile.1}"/>
+        <copy-ear-war file="${libs.jstl11.classpath.libfile.2}" propname="included.lib.libs.jstl11.classpath.2.X"/>
+        <copy-ear-war file="${libs.jstl11.classpath.libfile.1}" propname="included.lib.libs.jstl11.classpath.1.X"/>
         <mkdir dir="${build.web.dir.real}/META-INF"/>
-        <manifest file="${build.web.dir.real}/META-INF/MANIFEST.MF" mode="update"/>
+        <manifest file="${build.web.dir.real}/META-INF/MANIFEST.MF" mode="update">
+            <attribute name="Class-Path" value="${included.lib.libs.jstl11.classpath.1.X} ${included.lib.libs.jstl11.classpath.2.X} "/>
+        </manifest>
         <delete dir="${dist.ear.dir}/temp"/>
     </target>
-    <target name="library-inclusion-in-archive" depends="init" unless="dist.ear.dir"/>
+    <target name="library-inclusion-in-archive" depends="init" unless="dist.ear.dir">
+        <copy file="${libs.jstl11.classpath.libfile.2}" todir="${build.web.dir.real}/WEB-INF/lib"/>
+        <copy file="${libs.jstl11.classpath.libfile.1}" todir="${build.web.dir.real}/WEB-INF/lib"/>
+    </target>
     <target name="do-ear-dist" depends="init,compile,compile-jsps,-pre-dist,library-inclusion-in-manifest">
         <dirname property="dist.jar.dir" file="${dist.ear.war}"/>
         <mkdir dir="${dist.jar.dir}"/>
