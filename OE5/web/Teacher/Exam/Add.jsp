@@ -23,7 +23,7 @@ Abbas Adel
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
  
 
-
+<c:set var="subsectionTitle" value="Add New Exam" scope="request"/>
 
 
 <c:choose>

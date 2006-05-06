@@ -7,13 +7,8 @@ CREATION DATE / BY:
 18 April 2006 BY Abbas Adel
 
 LAST MODIFY / BY:
-18 April 2006 BY Abbas Adel
+6 May 2006 BY Abbas Adel
 
-MODIFICATIONS:
-1- Added 2 links
-
-TO DO:
-1- insert more links
 
 JOP TO:
 Abbas Adel
@@ -23,11 +18,14 @@ Abbas Adel
 
 
     <ul>
-        <li class="<c:out value="${param.subaction == 'summary' || empty param.subaction? 'current':''}" />">
+        <li class="${param.subaction == 'summary' || empty param.subaction? 'current':''}">
             <a href="CP.jsp?action=status&subaction=summary" >Summary</a>
         </li>
-        <li class="<c:out value="${param.subaction == 'details'? 'current':''}" />">
+        <li class="${param.subaction == 'details'? 'current':''}">
             <a href="CP.jsp?action=status&subaction=details">Details</a>
+        </li>
+        <li class="${param.subaction == 'messages'? 'current':''}">
+            <a href="CP.jsp?action=status&subaction=messages" >Messages</a>
         </li>
     </ul>
 

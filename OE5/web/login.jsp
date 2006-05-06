@@ -20,9 +20,7 @@
                 
                 <c:if test="${studentInfo.rowCount > 0}">
                     <c:redirect url="/Student/CP.jsp">
-                        <c:forEach items="${studentInfo.rows}" var="row">
-                            <c:set var="User" value="${row}" scope="session" />
-                        </c:forEach>
+                            <c:set var="User" value="${studentInfo.rows[0]}" scope="session" />
                     </c:redirect>
                 </c:if>
                 
@@ -35,12 +33,24 @@
                     <sql:param value="${param.password}"/>
                 </sql:query>
                 
+                <c:set var="User" value="${teacherInfo.rows[0]}" scope="session" />
+                
                 <c:if test="${teacherInfo.rowCount > 0}">
-                    <c:redirect url="/Teacher/CP.jsp">
-                        <c:forEach items="${teacherInfo.rows}" var="row">
-                        <c:set var="User" value="${row}" scope="session" />
-                        </c:forEach>
+                    <sql:query var="Messages">
+                        SELECT COUNT(*) FROM Message, Teacher 
+                        WHERE Teacher.TID = Message.UID 
+                        AND Message.`user` = 'teacher' AND Message.UID = ? 
+                        AND Message.mdate > ?
+                        <sql:param value="${teacherInfo.rows[0].TID}" />
+                        <sql:param value="${User.login}" />
+                    </sql:query>
+                    
+                    
+                    <sql:update sql="UPDATE Teacher SET login = CURRENT_TIMESTAMP() WHERE TID = ${User.TID}" />
+                    <c:redirect url="/Teacher/CP.jsp?action=status" >                        
+                        <c:param name="NormalMessage" value="You have <b>${Messages.rows[0]['']}</b> new message/s"/>                        
                     </c:redirect>
+                    
                 </c:if>
                 
             </c:when>
@@ -49,9 +59,9 @@
             </c:otherwise>
         </c:choose>
         
-        <c:if test="${User.rowCount == 0}">
+        <c:if test="${!User}">
             <br /><br /><br /><br /><br />
-            <div id="Message"> 
+            <div id="ErrorMessage"> 
                 <p>Invalid ID and password compination, please go <a href="index.jsp">back</a> and try tologin again. </p>
                 <p>&nbsp;</p>
                 <p><em>Administrator</em></p>

@@ -31,8 +31,8 @@ TO DO:
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<c:set var="subsectionTitle" value="View Exam" scope="request"/>
 
+<c:set var="subsectionTitle" value="View Exams" scope="request"/>
 <c:if test="${empty param.EID}" >
     <jsp:forward page="../CP.jsp?action=exam&subaction=list" >
         <jsp:param name="ErrorMessage" 

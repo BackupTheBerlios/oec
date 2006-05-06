@@ -36,7 +36,14 @@ Islam Negm
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
+<c:if test="${empty param.QID}" >
+    <jsp:forward page="../CP.jsp?action=question&subaction=list" >
+        <jsp:param name="ErrorMessage" 
+        value="Please press on <b>'Edit'</b> link in the <b>\"Question List\"</b>"/>
+    </jsp:forward>
+</c:if>
 
+<c:set var="subsectionTitle" value="Edit Question" scope="request"/>
 
 <c:if test="${! empty param.Submit}">
     <jsp:forward page="Edit_update.jsp" />

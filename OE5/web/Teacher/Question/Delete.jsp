@@ -30,6 +30,16 @@ Hamada
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+ <c:if test="${empty param.QID}" >
+     <jsp:forward page="../CP.jsp?action=question&subaction=list" >
+         <jsp:param name="ErrorMessage" 
+         value="Please press on <b>'Delete'</b> link in the <b>\"Question List\"</b>"/>
+     </jsp:forward>
+ </c:if>
+
+<c:set var="subsectionTitle" value="Delete Question" scope="request"/>
+
 <sql:update var = "DeltedOptions">
     DELETE FROM `option`
     WHERE `option`.QID = ?
@@ -43,6 +53,6 @@ Hamada
 </sql:update>
 
 <jsp:forward page="../CP.jsp?action=question&subaction=list" >
-        <jsp:param name="NormalMessage" 
-        value="Question has Deleted correctly"/>
-    </jsp:forward>
+    <jsp:param name="NormalMessage" 
+    value="Question has Deleted correctly"/>
+</jsp:forward>

@@ -9,12 +9,6 @@ CREATION DATE / BY:
 LAST MODIFY / BY:
 18 April 2006 BY Abbas Adel
 
-MODIFICATIONS:
-1- Added 2 links
-
-TO DO:
-1- insert more links
-
 JOP TO:
 Abbas Adel
 
@@ -23,10 +17,10 @@ Abbas Adel
 
 
     <ul>
-        <li class="<c:out value="${param.subaction == 'list' || empty param.subaction? 'current':''}" />">
+        <li class="${param.subaction == 'list' || empty param.subaction? 'current':''}">
             <a href="CP.jsp?action=student&subaction=list" >List</a>
         </li>
-        <li class="<c:out value="${param.subaction == 'view'? 'current':''}" />">
+        <li class="${param.subaction == 'view'? 'current':''}">
             <a href="CP.jsp?action=student&subaction=add">View</a>
         </li>
     </ul>

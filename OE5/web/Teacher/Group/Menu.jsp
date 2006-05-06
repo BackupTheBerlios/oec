@@ -24,19 +24,17 @@ Abbas Adel
 
 
     <ul>
-        <li class="<c:out value="${param.subaction == 'list' || empty param.subaction? 'current':''}" />">
-            <%-- MODIFICATION DONE HERE ON THE LINK--%>
+        <li class="${param.subaction == 'list' || empty param.subaction? 'current':''}">
             <a href="CP.jsp?action=group&subaction=list&FTID=0" >List</a>
         </li>
-        <li class="<c:out value="${param.subaction == 'add'? 'current':''}" />">
+        <li class="${param.subaction == 'add'? 'current':''}">
             <a href="CP.jsp?action=group&subaction=add">Add</a>
         </li>
-        <li class="<c:out value="${param.subaction == 'edit'? 'current':''}" />">
+        <li class="${param.subaction == 'edit'? 'current':''}">
             <a href="CP.jsp?action=group&subaction=edit">Edit</a>
         </li>
-        <li class="<c:out value="${param.subaction == 'delete'? 'current':''}" />">
-            <a href="CP.jsp?action=group&subaction=list&FTID=0">Delete</a>
-            <%--<a href="/CP.jsp?action=group&subaction=list&FTID=0">Delete</a>--%>
+        <li class="${param.subaction == 'delete'? 'current':''}">
+            <a href="CP.jsp?action=group&subaction=delete">Delete</a>
         </li>
     </ul>
 

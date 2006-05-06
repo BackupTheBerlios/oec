@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
         <c:choose>
             <c:when test="${param.action == 'insert'}">
                 <sql:query var="MXATID" sql="SELECT MAX(TID) AS TID FROM Teacher;"/>

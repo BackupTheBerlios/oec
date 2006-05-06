@@ -26,6 +26,15 @@ Hamada
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+<c:if test="${empty param.SID}" >
+    <jsp:forward page="../CP.jsp?action=student&subaction=list" >
+        <jsp:param name="ErrorMessage" 
+        value="Please press on <b>'View'</b> link in the <b>\"Student List\"</b>"/>
+    </jsp:forward>
+</c:if>
+<c:set var="subsectionTitle" value="View Student Information" scope="request"/>
+
 <sql:query var="myStudent">
     SELECT SName,Email,Address, `date`
     FROM student

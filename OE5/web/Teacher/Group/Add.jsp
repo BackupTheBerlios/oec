@@ -23,7 +23,7 @@ Abbas Adel
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
  
 
-<c:set var="subsectionTitle" value="Add New Question" scope="request"/>
+<c:set var="subsectionTitle" value="Add New Group" scope="request"/>
 <c:choose>
     <c:when test="${param.step == 2}">
         <jsp:include page="Add_step2.jsp" />

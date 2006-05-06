@@ -36,6 +36,9 @@ Hamada
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+ <c:set var="subsectionTitle" value="Add New Exam" scope="request"/>
+
 <sql:update var="DeletedExamQuestions">
     DELETE FROM `takeexam`
     WHERE `takeexam`.EID=?

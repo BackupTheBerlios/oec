@@ -27,6 +27,17 @@ Islam Negm
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+<c:set var="subsectionTitle" value="Delete Exam" scope="request"/>
+
+<c:if test="${empty param.EID}" >
+    <jsp:forward page="../CP.jsp?action=exam&subaction=list" >
+        <jsp:param name="ErrorMessage" 
+        value="Please press on <b>'Delete'</b> link in the <b>\"Exam List\"</b>"/>
+    </jsp:forward>
+</c:if>
+        
+
 <sql:update var="DeletedQuestion">
     DELETE FROM `takeexam`
     WHERE `takeexam`.EID=?
@@ -40,6 +51,6 @@ Islam Negm
 </sql:update>
 
 <jsp:forward page="../CP.jsp?action=exam&subaction=list" >
-        <jsp:param name="NormalMessage" 
-        value="Exam has Deleted correctly"/>
-    </jsp:forward>
+    <jsp:param name="NormalMessage" 
+    value="Exam has Deleted correctly"/>
+</jsp:forward>

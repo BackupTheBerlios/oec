@@ -28,6 +28,9 @@ Hamada
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+<c:set var="subsectionTitle" value="List Students" scope="request"/>
+
 <form>
     <table width="100%" cellspacing="2" cellpadding="2">
         <tr>

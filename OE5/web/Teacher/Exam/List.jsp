@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+<c:set var="subsectionTitle" value="List Exams" scope="request"/>
+     
   <table width="100%" cellspacing="2" cellpadding="2">
       <tr>
           <td align="right">
@@ -73,7 +76,7 @@
                               <a href="CP.jsp?action=exam&subaction=delete&EID=${TeacherExam.EID}$EID=${TeacherExam.EID}">Delete</a>                                  </c:when>
                               <c:otherwise>
                               <a href="CP.jsp?action=exam&subaction=view&EID=${TeacherExam.EID}">View</a>                                  </c:otherwise>
-                        </c:choose>                          </td>
+                          </c:choose>                          </td>
                       </tr>
                   </c:forEach>
               </table>

@@ -33,14 +33,13 @@ Islam Negm
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
-<c:set var="subsectionTitle" value="Edit Question" scope="request"/>
-
-<c:if test="${empty param.QID}" >
+<c:if test="${empty param.GID}" >
     <jsp:forward page="../CP.jsp?action=group&subaction=list" >
         <jsp:param name="ErrorMessage" 
         value="Please press on <b>'Edit'</b> link in the <b>\"Group List\"</b>"/>
     </jsp:forward>
 </c:if>
+<c:set var="subsectionTitle" value="Edit Group" scope="request"/>
         
    
 
@@ -53,8 +52,8 @@ Islam Negm
     <%-- Store QID value here --%>
     <input type="hidden" name="QID" value="???" />
     <%-- List teacher's courses here --%>
-	<p>
-    <label>Course:</label>
+    <p>
+        <label>Course:</label>
     
         <select name="CID">
             <%--  Selected course goes here --%>

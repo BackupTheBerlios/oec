@@ -21,18 +21,17 @@ Abbas Adel
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
     <ul>
-        <li class="<c:out value="${param.subaction == 'list' || empty param.subaction? 'current':''}" />">
+        <li class="${param.subaction == 'list' || empty param.subaction? 'current':''}">
             <a href="CP.jsp?action=question&subaction=list" >List</a>
         </li>
-        <li class="<c:out value="${param.subaction == 'add'? 'current':''}" />">
+        <li class="${param.subaction == 'add'? 'current':''}">
             <a href="CP.jsp?action=question&subaction=add">Add</a>
         </li>
-        <li class="<c:out value="${param.subaction == 'edit'? 'current':''}" />">
+        <li class="${param.subaction == 'edit'? 'current':''}">
             <a href="CP.jsp?action=question&subaction=edit">Edit</a>
         </li>
-        <li class="<c:out value="${param.subaction == 'delete'? 'current':''}" />">
+        <li class="${param.subaction == 'delete'? 'current':''}">
             <a href="CP.jsp?action=question&subaction=delete">Delete</a>
         </li>
     </ul>

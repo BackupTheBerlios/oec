@@ -7,16 +7,21 @@
 # 15 Mars 2006 BY Abbas Adel
 #
 # LAST MODIFY / BY:
-# 2 May 2006 BY Abbas Adel
+# 6 May 2006 BY Abbas Adel, Tanahy
 #
 # MODIFICATIONS:
 # 1- Added TID to Question which references Teacher(TID);
 # 2- Added `Date` to Teach
 # 3- Added Exam and TakeExam tables 
 # 4- CID to EID in Result
+# 5- Added login Timestamp to teacher to save last login date
+# 6- Added login Timestamp to student to save last login date
+# 7- Added Message table to handle messages in the system
+# 8- Added 'SubmitExam' table to handle group exams
 #
 #################################################
  
+DROP DATABASE IF EXISTS mufic;
 CREATE DATABASE mufic;
 USE mufic;
 
@@ -43,11 +48,12 @@ CREATE TABLE Teacher
 	TName varchar(50) not null,
 	Password varchar(20) not null,
 	Degree ENUM('Demonstrator','Lecturer','Assistant Lecturer','Proffessor') NOT NULL DEFAULT 'Lecturer',
-  Birth DATE DEFAULT '0000-00-00',
-  Address VARCHAR(45),
-  Tell VARCHAR(10),
-  Email varchar(20),
-  `Date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        Birth DATE DEFAULT '0000-00-00',
+        Address VARCHAR(45),
+        Tell VARCHAR(10),
+        Email varchar(20),
+        `Date` date,
+        login TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(TID)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -64,8 +70,24 @@ CREATE TABLE Student
   Birth DATE DEFAULT '0000-00-00',
   Tell VARCHAR(10) NOT NULL,
   Address VARCHAR(80) NOT NULL,
-  `Date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Date` date,
+  login TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(SID)
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+DROP TABLE IF EXISTS Message;
+CREATE TABLE Message
+(   
+    MID INTEGER(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    UID INTEGER(10) UNSIGNED NOT NULL,
+    `type` ENUM('exam','result','group'),
+    Message varchar(255) NOT NULL,
+    mdate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    ID INTEGER(10) NOT NULL,
+    `User` ENUM('student','teacher') NOT NULL,
+    PRIMARY KEY(MID)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -170,6 +192,18 @@ CREATE TABLE `TakeExam`
         FOREIGN KEY(EID) REFERENCES exam(EID),
 	FOREIGN KEY(QID) REFERENCES question(QID)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `SubmitExam`;
+CREATE TABLE `SubmitExam`
+(
+        EID INTEGER(10) UNSIGNED NOT NULL,
+	GID INTEGER(10) UNSIGNED NOT NULL,	
+        PRIMARY KEY(EID ,GID),
+        FOREIGN KEY(EID) REFERENCES exam(EID),
+	FOREIGN KEY(GID) REFERENCES `Group`(GID)
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 
 

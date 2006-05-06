@@ -43,17 +43,33 @@ Ahmed Tanahy
 </sql:update>
 <c:forEach items="${paramValues.QID}" var="qustionnumber">
     <sql:update>
-    INSERT INTO takeexam VALUES(?,?)
-    <sql:param value="${MAXEID.rows[0].EID+1}" />
-    <sql:param value = "${qustionnumber}"/>
-</sql:update>
+        INSERT INTO takeexam VALUES(?,?)
+        <sql:param value="${MAXEID.rows[0].EID+1}" />
+        <sql:param value = "${qustionnumber}"/>
+    </sql:update>
 </c:forEach>
 
-<jsp:forward page="../CP.jsp?action=exam&subaction=list" >
-        <jsp:param name="NormalMessage" 
-        value="Exam has inserted correctly"/>
-    </jsp:forward>
-<%--    <c:forEach items="${paramValues.QID}" var="row" >
-        <c:out value="${row}" />
-    </c:forEach>--%>
+<%-- message the users --%>
 
+<sql:query var="Teachers" >
+    SELECT Teacher.TID FROM Teacher,Teach 
+    WHERE Teacher.TID = Teach.TID AND Teach.CID = ? AND Teacher.TID != ?
+    <sql:param value="${param.CID}" />
+    <sql:param value="${User.TID}" />
+</sql:query>
+<c:forEach items="${Teachers.rows}" var="Teacher">
+    <sql:update>    
+        INSERT INTO `Message` VALUES (DEFAULT,?,?,?,DEFAULT,?,?)
+        <sql:param value="${Teacher.TID}" />
+        <sql:param value="exam"/>
+        <sql:param value="${User.TName} has added a new exam <b>${param.ename}</b>" />
+        <sql:param value="${MAXEID.rows[0].EID+1}"/>
+        <sql:param value="teacher"/>
+    </sql:update>
+</c:forEach>
+
+
+<jsp:forward page="../CP.jsp?action=exam&subaction=list" >
+    <jsp:param name="NormalMessage" 
+    value="Exam has inserted correctly"/>
+</jsp:forward>

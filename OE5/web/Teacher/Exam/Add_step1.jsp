@@ -32,7 +32,7 @@ Abbas Adel
             <td width="743"><select name="CID">
                 <sql:query var="courses"> 
                     SELECT DISTINCT Course.cname, Course.CID FROM Course, Teach, Question 
-                    WHERE  Teach.CID = Course.CID AND Teach.TID = ? AND Course.CID = Question.CID
+                    WHERE  Question.CID = Course.CID AND Course.CID = Teach.CID  AND Teach.TID = ? 
                             
                     <sql:param value="${User.TID}"/>
                 </sql:query>

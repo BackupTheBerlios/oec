@@ -27,18 +27,26 @@ Islam Negm
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib  prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<c:set var="subsectionTitle" value="Delete Question" scope="request"/>
+
+<c:if test="${empty param.GID}" >
+    <jsp:forward page="../CP.jsp?action=group&subaction=list" >
+        <jsp:param name="ErrorMessage" 
+        value="Please press on <b>'Delete'</b> link in the <b>\"Group List\"</b>"/>
+    </jsp:forward>
+</c:if>
+<c:set var="subsectionTitle" value="Delete Group" scope="request"/>
+
 <%--DELETING THE QUESTION  DATA FROM THE ASSIGN TABLE--%>
 <sql:update>
     DELETE FROM `assign`
-       WHERE `assign`.gid=?
-   <sql:param value="${param.GID}"/>    
+    WHERE `assign`.gid=?
+    <sql:param value="${param.GID}"/>    
 </sql:update>
 <%--DELETING THE QUESTION  DATA FROM THE GROUP TABLE--%>
 <sql:update>
     DELETE FROM `group`
-       WHERE gid=?
-   <sql:param value="${param.GID}"/>    
+    WHERE gid=?
+    <sql:param value="${param.GID}"/>    
 </sql:update>
 <c:if test="${empty param.QID}" >
     <jsp:forward page="../CP.jsp?action=group&subaction=list" >

@@ -1,6 +1,30 @@
+<%--
+
+FILE DESCRIPTION:
+List Groups
+
+CREATION DATE / BY:
+18 April 2006 BY Abbas Adel
+
+LAST MODIFY / BY:
+6 May 2006 BY Abbas Adel
+
+REQUEST VARIABLES:
+User:sessionObject  Contains all user information about user found in Teacher table                 
+
+
+TO DO:
+1- List all groups
+
+JOP TO:
+Islam Negm
+
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<form method="post" action="">
+
+<c:set var="subsectionTitle" value="List Groups" scope="request"/>
+<form method="post" action="CP.jsp?action=group&subaction=edit_update">
     <table width="100%" cellspacing="2" cellpadding="2">
         <tr>
             <td align="right">

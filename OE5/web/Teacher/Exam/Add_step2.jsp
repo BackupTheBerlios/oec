@@ -45,13 +45,12 @@ Abbas Adel
     <sql:query var="questions" >
         SELECT question.QID, question.question
         FROM `teacher`, `question`, `teach`, `course` 
-        WHERE `teacher`.TID = ? 
-        AND `course`.CID = ?
+        WHERE `course`.CID = ?
         AND `teacher`.TID = `question`.TID
         AND `teacher`.TID = `teach`.TID
         AND `teach`.CID = `course`.CID 
         AND `question`.CID = `course`.CID
-        <sql:param value="${User.TID}" />
+        
         <sql:param value="${param.CID}"/>
     </sql:query>
     <table width="100%" cellspacing="2" cellpadding="2">
