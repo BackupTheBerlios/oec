@@ -1,3 +1,4 @@
+
 INSERT INTO teacher VALUES (1,"Ahmed Eltanahy" ,"123456","Proffessor",null,"Tanta","3290206","prog_eng",DEFAULT);
 INSERT INTO teacher VALUES (DEFAULT,"Abbas Adel" ,"123456","Proffessor",null,"Tanta","3290206","prog_eng",DEFAULT);
 
