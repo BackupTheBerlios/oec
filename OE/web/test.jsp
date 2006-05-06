@@ -3,6 +3,7 @@
 <pre>
     <sql:query var="biso">
         SELECT biso as hh FROM test
+        SELECT TANAHY
     </sql:query>  
     <c:forEach items="${biso.rows}"  var="q">
         <tr  class="row2">
