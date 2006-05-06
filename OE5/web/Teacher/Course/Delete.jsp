@@ -28,6 +28,14 @@ Hamada
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib  prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
+ <c:if test="${empty param.CID}" >
+     <jsp:forward page="../CP.jsp?action=course&subaction=list" >
+         <jsp:param name="ErrorMessage" 
+         value="Please press on <b>'Delete'</b> link in the <b>\"Delete List\"</b>"/>
+     </jsp:forward>
+ </c:if>
+
+
 <c:set var="subsectionTitle" value="Delete Course" scope="request"/>
 
 
@@ -35,7 +43,7 @@ Hamada
 
 <sql:update>
     DELETE FROM teach
-       WHERE TID=? AND CID=?
+    WHERE TID=? AND CID=?
    <sql:param value="${User.TID}"/> 
    <sql:param value="${param.CID}"/>
 </sql:update>
@@ -43,5 +51,5 @@ Hamada
 <jsp:forward page="../CP.jsp?action=course&subaction=list">
     
     <jsp:param name="NormalMessage"
-        value="Successfuly the course is deleted from your account"/>
+    value="Successfuly the course is deleted from your account"/>
 </jsp:forward>

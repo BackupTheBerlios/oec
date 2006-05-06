@@ -29,6 +29,13 @@ Hamada
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 
+<c:if test="${empty param.CID}" >
+    <jsp:forward page="../CP.jsp?action=course&subaction=list" >
+        <jsp:param name="ErrorMessage" 
+        value="Please press on <b>'Add'</b> link in the <b>\"Course List\"</b>"/>
+    </jsp:forward>
+</c:if>
+
 <c:set var="subsectionTitle" value="Add New Course" scope="request"/>
 
 
@@ -36,11 +43,11 @@ Hamada
 <sql:update>
     INSERT INTO teach
     VALUES(?,?,NULL)
-  <sql:param value="${param.CID}"/>
-   <sql:param value="${User.TID}"/>
+    <sql:param value="${param.CID}"/>
+    <sql:param value="${User.TID}"/>
     
 </sql:update> 
 <jsp:forward page="../CP.jsp?action=course&subaction=list" >
-   <jsp:param name="NormalMessage"
-        value="Successfully the course is added into your account"/>
+    <jsp:param name="NormalMessage"
+    value="Successfully the course is added into your account"/>
 </jsp:forward>
