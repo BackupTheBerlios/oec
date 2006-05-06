@@ -60,77 +60,77 @@ a:hover {
 
 
 #hearder{
-	height:181px;
-	width:640px;
-	background-color:#ffffff;
-	padding-bottom:4px;
+	height: 181px;
+	width: 640px;
+	background-color: #ffffff;
+	padding-bottom: 4px;
 	border-bottom: #0099FF 2px solid;
-	font-size:12px;
-	font-weight:bold;
-	background:url(images/oec.jpg) right no-repeat ;
-	vertical-align:bottom;
+	font-size: 12px;
+	font-weight: bold;
+	background: url(images/oec.jpg) right no-repeat ;
+	vertical-align: bottom;
 		
 }
 
 #footer{
-	color:#666666;
+	color: #666666;
 	padding: 5px;
-	border-top:#333333 dotted 1px;
+	border-top: #333333 dotted 1px;
 }
 
 
 
 #NormalMessage, #ErrorMessage
 {
-	margin:auto;
-	margin-top:10px;
-	margin-bottom:10px;
-	width:40%;
-	padding:10px;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 40%;
+	padding: 10px;
 }
 
 #NormalMessage
 {
-	background-color:#33CC66;
-	border:#336600 1px;
+	background-color: #33CC66;
+	border: #336600 1px;
 }
 
 #ErrorMessage
 {
-	background-color:#FFFF99;
-	border:#FF6600 solid 1px;
+	background-color: #FFFF99;
+	border: #FF6600 solid 1px;
 }
 
 #SectionTitle
 {
-	text-indent: 15px;
+    text-indent: 15px;
     height: 45px;
     line-height: 45px;
-	font-size:13px;
+    font-size: 13px;
     color: #FFFFFF;
     text-decoration: none;
     border-top: 1px solid #ffffff;
     border-bottom: 1px solid #afafaf;
-	background-color:#5BADFF;
-	width:auto;
+    background-color: #5BADFF;
+    width: auto;
 	
 }
 
-#SectionTitle i{font-size:11px;}
+#SectionTitle i{font-size: 11px;}
 
 
 .row1 td
 {
-	background-color:#D7EBFF;
-	border-bottom:#d5d5d5 1px dotted;
-	padding:5px;
+	background-color: #D7EBFF;
+	border-bottom: #d5d5d5 1px dotted;
+	padding: 5px;
 }
 
 .list tr td
 {
-	background-color:#FFFFFF;
-	border-bottom:#d5d5d5 1px dotted;
-	padding:5px;
+	background-color: #FFFFFF;
+	border-bottom: #d5d5d5 1px dotted;
+	padding: 5px;
 }
 #nav
 {
@@ -149,7 +149,7 @@ a:hover {
     text-decoration: none;
     border-top: 1px solid #ffffff;
     border-bottom: 1px solid #afafaf;
-	background-color:#C6E2FF;
+    background-color: #C6E2FF;
     
 }
 
