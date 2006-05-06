@@ -24,3 +24,14 @@ JOP TO:
 Tanahy
 
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<sql:update>
+    DELETE FROM Message WHERE message.MID = ?
+    <sql:param value="${param.MID}"/>
+</sql:update>
+
+<jsp:forward page="../CP.jsp?action=status&subaction=messages" >
+    <jsp:param name="NormalMessage"
+    value="The message is deleted succefully from your inbox"/>
+</jsp:forward>
