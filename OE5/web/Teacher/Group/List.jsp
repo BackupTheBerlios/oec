@@ -30,15 +30,14 @@ Islam Negm
             <td align="right">
                 <label></label>
                 <label> Filter by:</label>
-                <%--<sql:query  var="Groups" sql="select `group`.gname,`group`.gid from `group`;"  />                --%>
-                <sql:query  var="Groups" sql="SELECT DISTINCT `group`.gname,`group`.GID  FROM `group`;"  />    
+                
+                <sql:query  var="Groups" sql="SELECT `teacher`.TID,`teacher`.TName  FROM `teacher`;"  />    
                 <select name="FGID" onchange="MM_jumpMenu('parent',this,0)">
                     <option value="CP.jsp?action=group&subaction=list&FTID=0">All</option>
                     <c:forEach items="${Groups.rows}" var="MyGroup">--!>
-                        <option value="CP.jsp?action=group&subaction=list&FTID=${MyGroup.GID}" ${param.FTID == MyGroup.GID?"selected":""}>${MyGroup.gname}</option>
+                        <option value="CP.jsp?action=group&subaction=list&FTID=${MyGroup.TID}" ${param.FTID == MyGroup.TID?"selected":""}>${MyGroup.TName}</option>
                     </c:forEach> 
                 </select>
-      
             </td>
         </tr>
         <tr>
@@ -52,20 +51,31 @@ Islam Negm
                         <th width="16%">Action</th>
                     </tr>
                     
-                    <sql:query var="groups">
-                        SELECT `group`.GID,`group`.gname,`group`.tid,`teacher`.tname,COUNT(`assign`.sid) AS `count`,`group`.gdate
-                        FROM `group`,`assign`,`teacher`      
-                        WHERE
-                        <c:if test="${!empty param.FTID || param.FTID != 0}" >
-                            `group`.TID=?  AND                                                       
-                            <sql:param value="${User.TID}" />                        
-                            <%--<sql:param value="${User.TID}" />--%>
-                        </c:if> 
-                        
+                    
+                    <c:if test="${!empty param.FTID || param.FTID != 0}" >
+                        <sql:query var="groups">
+                            SELECT `group`.GID,`group`.gname,`group`.tid,`teacher`.tname,COUNT(`assign`.sid) AS `count`,`group`.gdate
+                            FROM `group`,`assign`,`teacher`      
+                            WHERE
+                            `teacher`.TID=?  AND                                                       
                             `teacher`.TID = `group`.TID  AND `group`.GID = `assign`.GID
-                            GROUP BY `group`.GID
-                        
-                    </sql:query>
+                            GROUP BY `group`.GID                                            
+                            <sql:param value="${param.FTID}" />                        
+                        </sql:query>
+                        <%--<sql:param value="${User.TID}" />--%>
+                    </c:if> 
+                    <c:if test="${empty param.FTID || param.FTID == 0}" >
+                        <sql:query var="groups">
+                            SELECT `group`.GID,`group`.gname,`group`.tid,`teacher`.tname,COUNT(`assign`.sid) AS `count`,`group`.gdate
+                            FROM `group`,`assign`,`teacher`      
+                            WHERE                           
+                            `teacher`.TID = `group`.TID  AND `group`.GID = `assign`.GID
+                            GROUP BY `group`.GID                                                                        
+                        </sql:query>    
+                                               
+                        <%--<sql:param value="${User.TID}" />--%>
+                    </c:if> 
+                    
                     
                     <c:forEach items="${groups.rows}" var="group" >
                         <tr>
