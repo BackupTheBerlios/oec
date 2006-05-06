@@ -56,18 +56,18 @@ a:hover {
     text-decoration: underline;
 }
 
-
+/******************************************************************************************************** */
 
 
 #hearder{
 	height:181px;
 	width:640px;
 	background-color:#ffffff;
-	padding-bottom::4px;
+	padding-bottom:4px;
 	border-bottom: #0099FF 2px solid;
 	font-size:12px;
 	font-weight:bold;
-	background:url(/OE/images/oec.jpg) right no-repeat ;
+	background:url(images/oec.jpg) right no-repeat ;
 	vertical-align:bottom;
 		
 }
