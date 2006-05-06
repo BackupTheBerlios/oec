@@ -31,7 +31,7 @@ Islam Negm
                 <label></label>
                 <label> Filter by:</label>
                 
-                <sql:query  var="Groups" sql="SELECT `teacher`.TID,`teacher`.TName  FROM `teacher`;"  />    
+                <sql:query  var="Groups" sql="SELECT DISTINCT `teacher`.TID,`teacher`.TName  FROM `teacher`;"  />    
                 <select name="FGID" onchange="MM_jumpMenu('parent',this,0)">
                     <option value="CP.jsp?action=group&subaction=list&FTID=0">All</option>
                     <c:forEach items="${Groups.rows}" var="MyGroup">--!>
