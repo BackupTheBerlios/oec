@@ -39,25 +39,20 @@ Hamada
 
  <c:set var="subsectionTitle" value="Add New Exam" scope="request"/>
 
-<sql:update var="DeletedExamQuestions">
+<sql:update>
     DELETE FROM `takeexam`
     WHERE `takeexam`.EID=?
     <sql:param value="${param.EID}"/>
 </sql:update>
 
-<sql:update var="DeletedExam">
-    DELETE FROM `exam`
-    WHERE `exam`.EID=?
-    <sql:param value="${param.EID}"/>
-</sql:update>
-
-
 <sql:update >
-    INSERT INTO Exam VALUES(?,?,?,?,DEFAULT,${param.sdate},${param.edate})
-    <sql:param value="${param.EID}" />
-    <sql:param value="${param.CID}" />
-    <sql:param value="${User.TID}" />
+    UPDATE Exam SET ename = ? ,  Edate = DEFAULT, CID = ?, 
+    StartDate = ${param.sdate}, EndDate = ${param.edate}
+    WHERE EID = ?
     <sql:param value="${param.ename}" />
+    <sql:param value="${param.CID}" />
+    <sql:param value="${param.EID}" />
+    
 
 </sql:update>
 <c:forEach items="${paramValues.QID}" var="qustionnumber">
@@ -71,4 +66,4 @@ Hamada
 <jsp:forward page="../CP.jsp?action=exam&subaction=list" >
         <jsp:param name="NormalMessage" 
         value="Exam has updated correctly"/>
-    </jsp:forward>
+</jsp:forward>
