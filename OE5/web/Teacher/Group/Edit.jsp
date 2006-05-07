@@ -52,54 +52,46 @@ Islam Negm
     <%-- Store QID value here --%>
     <input type="hidden" name="QID" value="???" />
     <%-- List teacher's courses here --%>
-    <p>
-        <label>Course:</label>
-    
-        <select name="CID">
-            <%--  Selected course goes here --%>
-            <option value="???" selected="selected">MySelectedCourse1</option>
-            <option value="???">MyCourse2</option>
-        </select>
-    </p>
-    <p>
-        <label>Question:<br />
+  <p>
+        <label>Group name :</label>
+        <label>
+        <input name="textfield" type="text" value="Group Name" />
         </label>
-        <textarea name="question" cols="50">
-            my question does here
-        </textarea>
-    </p>
-    <p><label>Options:</label></p>
+  </p>
     <p>
-        <input name="SelectedOption" type="radio" value="1">
-        <input name="options[1]" type="text" value="Option a" size="50" maxlength="100">
-        <br />
-        <input name="SelectedOption" type="radio" value="2">
-        <input name="options[2]" type="text" value="Option B" size="50" maxlength="100">
-        <br />
-        <input name="SelectedOption" type="radio" value="3" checked>
-        <input name="options[3]" type="text" value="SelectedOption" size="50" maxlength="100">
-        <br />
-        <input name="SelectedOption" type="radio" value="4">
-        <input name="options[4]" type="text" value="Option D" size="50" maxlength="100">
-        <br />
-        <input name="SelectedOption" type="radio" value="5">
-        <input name="options[5]" type="text" value="empty for extention..." size="50" maxlength="100">
-        <br />
-        <input name="SelectedOption" type="radio" value="6">
-        <input name="options[6]" type="text" size="50" maxlength="100">
-        <br />
-        <input name="SelectedOption" type="radio" value="7">
-        <input name="options[7]" type="text" size="50" maxlength="100">
-        <br />
-        <input name="SelectedOption" type="radio" value="8">
-        <input name="options[8]" type="text" size="50">
-        <br />
-        <input name="SelectedOption" type="radio" value="9">
-        <input name="options[9]" type="text" size="50" maxlength="100">
-        <br />
-        <input name="SelectedOption" type="radio" value="10">
-        <input name="options[10]" type="text" size="50" maxlength="100">
+      <label></label>
+        <label>Students:</label><label></label>
     </p>
+    <table width="200" border="0">
+      <tr>
+        <td width="29">&nbsp;</td>
+        <td width="161">Name</td>
+      </tr>
+      <tr>
+        <td><label>
+          <input name="checkbox" type="checkbox" value="checkbox" checked="checked" />
+        </label></td>
+        <td>Ahmed Eltanahy </td>
+      </tr>
+      <tr>
+        <td><label>
+          <input name="checkbox" type="checkbox" value="checkbox" checked="checked" />
+        </label></td>
+        <td>Ahmed Eltanahy </td>
+      </tr>
+      <tr>
+        <td><label>
+          <input type="checkbox" name="checkbox" value="checkbox" />
+        </label></td>
+        <td>Ahmed Eltanahy </td>
+      </tr>
+      <tr>
+        <td><label>
+          <input type="checkbox" name="checkbox" value="checkbox" />
+        </label></td>
+        <td>Ahmed Eltanahy </td>
+      </tr>
+    </table>
     <p>
         <input type="submit" name="Submit" value="Submit">
         <input type="reset" name="Reset" value="Reset">
