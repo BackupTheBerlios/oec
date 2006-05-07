@@ -33,6 +33,9 @@ Hamada
 
 <c:set var="subsectionTitle" value="Edit Your Information" scope="request"/>
 <sql:query var="TeacherData" sql="SELECT * FROM `teacher` WHERE `teacher`.TID =${User.TID}"/>
+<c:set var="birthyear" value="YEAR(${TeacherData.rows[0].birth})"/>
+<c:set var="birthmonth" value="MONTH(${TeacherData.rows[0].birth})"/>
+<c:set var="birthday" value="DAY(${TeacherData.rows[0].birth})"/>
 <form action="edit.jsp" method="post" onsubmit="MM_validateForm('name','','R','password','','R','address','','R','tell','','RisNum','email','','RisEmail');return document.MM_returnValue">
     <table width="100%" border="0" cellpadding="2" cellspacing="2">
         <tr>
@@ -46,12 +49,12 @@ Hamada
         <tr>
             <td> Birth Date: </td>
             <td> Year: 
-              <input name="birth_year" type="text" size="8" maxlength="4" />
+              <input name="birth_year" value="${birthyear}" type="text" size="8" maxlength="4" />
               - Month:
                 
-              <input name="birth_month" type="text" size="6" maxlength="2" />
+              <input name="birth_month" value="${birthmonth}" type="text" size="6" maxlength="2" />
               - Day:
-              <input name="birth_day" type="text" size="6" maxlength="2" />
+              <input name="birth_day" value="${birthday}" type="text" size="6" maxlength="2" />
             </td>
         </tr>
         <td> Address: </td>
@@ -74,7 +77,7 @@ Hamada
                 <option value="4">Professor</option>
                 <option value="3">Lecturer</option>
                 <option value="2">Assistant Lecturer</option>
-                <option value="1" selected="selected">Demonstrator</option>
+                <option value="1" selected="selected">Administrator</option>
             </select>
             <input name="action" type="hidden" value="update" /></td>
         </tr>
