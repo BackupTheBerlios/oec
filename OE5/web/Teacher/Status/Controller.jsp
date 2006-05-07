@@ -22,7 +22,7 @@ Abbas Adel
 
 
 <c:choose>
-    <c:when test="${param.subaction == 'details'}"><jsp:include page="Details.jsp" /></c:when>
+    <c:when test="${param.subaction == 'edit'}"><jsp:include page="Edit.jsp" /></c:when>
     <c:when test="${param.subaction == 'messages'}"><jsp:include page="Messages.jsp" /></c:when>
     <c:when test="${param.subaction == 'delete'}"><jsp:include page="Delete.jsp" /></c:when>
     <c:otherwise><jsp:include page="Summary.jsp" /></c:otherwise>
