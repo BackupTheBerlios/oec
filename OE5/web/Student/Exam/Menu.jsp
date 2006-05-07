@@ -26,17 +26,9 @@ Abbas Adel
         <li class="${param.subaction == 'list' || empty param.subaction? 'current':''}">
             <a href="CP.jsp?action=exam&subaction=list" >List</a>
         </li>
-        <li class="${param.subaction == 'add'? 'current':''}">
-            <a href="CP.jsp?action=exam&subaction=add">Add</a>
-        </li>
-        <li class="${param.subaction == 'submit'? 'current':''}">
-            <a href="CP.jsp?action=exam&subaction=submit">Submit</a>
-        </li>
-        <li class="${param.subaction == 'edit'? 'current':''}">
-            <a href="CP.jsp?action=exam&subaction=edit">Edit</a>
-        </li>
-        <li class="${param.subaction == 'delete'? 'current':''}">
-            <a href="CP.jsp?action=exam&subaction=delete">Delete</a>
+
+        <li class="${param.subaction == 'examin'? 'current':''}">
+            <a href="CP.jsp?action=exam&subaction=examine">Examine</a>
         </li>
     </ul>
 
