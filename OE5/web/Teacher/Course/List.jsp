@@ -53,7 +53,7 @@ Hamada
             <tr>
             <%-- the course according to the login data --%>
             
-            <c:if test="${param.Filter == 1 || (param.Filter == 0 || empty param.Filter)}" >
+            <c:if test="${param.Filter == 1}" >
                 <sql:query var="Courses">
                     SELECT course.CID, course.cName, teach.date ,  teach.TID FROM course,teach                 
                     WHERE teach.CID = course.CID  AND teach.TID = ? 
@@ -75,7 +75,7 @@ Hamada
             </c:if>
             
             
-            <c:if test="${param.Filter == 2 || ( param.Filter == 0 || empty param.Filter)}" >
+            <c:if test="${param.Filter == 2}" >
                 <sql:query var="Courses">
                     SELECT course.CID, course.cName, teach.date ,  teach.TID FROM course,teach                 
                     WHERE teach.CID = course.CID 
@@ -90,6 +90,29 @@ Hamada
                         <td>${course.date}</td>
                         <td>
                             <a href="CP.jsp?action=course&subaction=add&CID=${course.CID}">Add</a>
+                        </td>
+                    </tr>
+                </c:forEach>  
+            </c:if>
+            
+            <c:if test="${param.Filter == 0 || empty param.Filter}" >
+                <sql:query var="AllCourses" sql="SELECT `course`.CID, `course`.cName FROM `course`"/>
+                <sql:query var="MyCourses" sql="SELECT `teach`.CID FROM `course` , `teach` WHERE `course`.CID = `teach`.CID AND `teach`.TID = ${User.TID}" />
+                <c:set value="1" var="Flag1"/>
+                <c:forEach items="${AllCourses.rows}" var="allcourse">
+                    <tr>
+                        <td>${allcourse.cName}</td>
+                        <td>${allcourse.date}</td>
+                        <c:forEach items="${myCourses.rows}" var="MyCourse">
+                            <c:if test="${allcourse.CID} == ${MyCourse}">
+                                <c:set value="1" var="Flaghgsdj "/>
+                            </c:if>
+                        </c:forEach>
+                        <td>
+                            <c:if test="${Flag && Flag1 == 1}">
+                                <a href="CP.jsp?action=course&subaction=delete&CID=${allcourse.CID}">Delete</a>                              
+                            </c:if>
+                            <a href="CP.jsp?action=course&subaction=add&CID=${allcourse.CID}">Add</a>
                         </td>
                     </tr>
                 </c:forEach>  
