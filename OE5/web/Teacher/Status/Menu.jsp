@@ -21,7 +21,7 @@ Abbas Adel
         <li class="${param.subaction == 'summary' || empty param.subaction? 'current':''}">
             <a href="CP.jsp?action=status&subaction=summary" >Summary</a>
         </li>
-        <li class="${param.subaction == 'Edit'? 'current':''}">
+        <li class="${param.subaction == 'edit'? 'current':''}">
             <a href="CP.jsp?action=status&subaction=edit">Edit</a>
         </li>
         <li class="${param.subaction == 'messages'? 'current':''}">

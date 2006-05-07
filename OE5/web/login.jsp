@@ -19,8 +19,20 @@
                 </sql:query>
                 
                 <c:if test="${studentInfo.rowCount > 0}">
-                    <c:redirect url="/Student/CP.jsp">
-                            <c:set var="User" value="${studentInfo.rows[0]}" scope="session" />
+                    <c:set var="User" value="${studentInfo.rows[0]}" scope="session" />
+                    <sql:query var="Messages">
+                        SELECT COUNT(*) FROM Message, Student 
+                        WHERE Student.SID = Message.UID 
+                        AND Message.`user` = 'student' AND Message.UID = ? 
+                        AND Message.mdate > ?
+                        <sql:param value="${studentInfo.rows[0].SID}" />
+                        <sql:param value="${User.login}" />
+                    </sql:query>
+                    
+                    
+                    <sql:update sql="UPDATE Student SET login = CURRENT_TIMESTAMP() WHERE SID = ${User.SID}" />
+                    <c:redirect url="/Student/CP.jsp?action=status" >                        
+                        <c:param name="NormalMessage" value="You have <b>${Messages.rows[0]['']}</b> new message/s"/>                        
                     </c:redirect>
                 </c:if>
                 
@@ -33,9 +45,10 @@
                     <sql:param value="${param.password}"/>
                 </sql:query>
                 
-                <c:set var="User" value="${teacherInfo.rows[0]}" scope="session" />
+                
                 
                 <c:if test="${teacherInfo.rowCount > 0}">
+                    <c:set var="User" value="${teacherInfo.rows[0]}" scope="session" />
                     <sql:query var="Messages">
                         SELECT COUNT(*) FROM Message, Teacher 
                         WHERE Teacher.TID = Message.UID 

@@ -29,7 +29,6 @@ Abbas Adel
                 <c:when test="${param.action == 'exam'}"><jsp:include page="Exam/Controller.jsp" /></c:when>
                 <c:when test="${param.action == 'student'}"><jsp:include page="Student/Controller.jsp" /></c:when>
                 <c:when test="${param.action == 'group'}"><jsp:include page="Group/Controller.jsp" /></c:when>
-                <c:when test="${param.action == 'option'}"><jsp:include page="Option/Controller.jsp" /></c:when>
                 <c:otherwise><jsp:include page="Status/Controller.jsp" /></c:otherwise>
             </c:choose>
             <td>
