@@ -48,7 +48,7 @@ Abbas Adel
         </tr>
         <tr>
             <td width="17%">Password:</td>
-            <td width="83%"><input name="password" type="text" size="40" maxlength="12" /></td>
+            <td width="83%"><input name="password" type="password" size="40" maxlength="12" /></td>
         </tr>
         <tr>
             <td> Birth Date: </td>
