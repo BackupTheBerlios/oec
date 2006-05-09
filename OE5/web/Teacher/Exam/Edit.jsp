@@ -57,13 +57,7 @@ ${row}
          <tr>
            <td width="123"><label>Exam Name:</label></td>
            <td><input name="ename" type="text" value="${myExams.rows[0].ename}"/></td>
-         </tr>
-         <tr>
-             <td width="123"><label>Submit time stamp:</label></td>
-             <td width="176"><label>
-               <input name="edate" type="text" value="${myExams.rows[0].edate}"  />
-             </label></td>
-         </tr>         
+         </tr>        
      </table>
      
      <p>

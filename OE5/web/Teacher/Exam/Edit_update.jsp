@@ -48,7 +48,7 @@ Hamada
 </sql:update>
 
 <sql:update >
-    UPDATE Exam SET `exam`.ename = ${param.ename} ,  `exam`.Edate = ${param.edate}, `exam`.CID = ${param.CID}
+    UPDATE Exam SET `exam`.ename = ${param.ename} ,  `exam`.Edate = DEFAULT , `exam`.CID = ${param.CID}
     WHERE `exam`.EID = ${param.EID}   
 
 </sql:update>
