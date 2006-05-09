@@ -84,7 +84,7 @@ Islam Negm
     <p><label>Options:</label>
     </p>
     <p>
-        <c:forEach items="${questionoptions.rows}" var="questionoption">
+        <c:forEach items="${questionoptions.rows}" begin="0" end="10" var="questionoption">
             <c:choose>
                 <c:when test="${questionoption.OID == Correctanswer.rows[0].OID}">
                     <input name="selectedOption[${param.QID}]" type="radio" checked="true" value="${questionoption.OID}">  
