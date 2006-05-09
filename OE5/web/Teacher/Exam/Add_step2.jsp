@@ -37,11 +37,7 @@ Abbas Adel
 
 <form method="post" action="CP.jsp?action=exam&subaction=add&step=3">
     <input type="hidden" name="CID" value="${param.CID}">
-    <input type="hidden" name="ename" value="${param.ename}">     
-          <c:set value="'${param.sy}-${param.sm}-${param.sd}'" var="StartDate" />
-          <c:set value="'${param.ey}-${param.em}-${param.ed}'" var="EndDate" />
-    <input type="hidden" name="sdate" value="${(empty param.sy || empty param.sm || empty param.sd)?'null':StartDate}">
-    <input type="hidden" name="edate" value="${(empty param.ey || empty param.em || empty param.ed)?'null':EndDate}">
+    <input type="hidden" name="ename" value="${param.ename}">               
     <sql:query var="questions" >
         SELECT question.QID, question.question
         FROM `teacher`, `question`, `teach`, `course` 

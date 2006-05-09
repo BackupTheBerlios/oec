@@ -38,13 +38,11 @@
                       <th width="18%">Course</th>
                       <th width="22%">Auther</th>
                       <th width="20%">Submit Time Stamp</th>
-                      <th width="10%">Start Date </th>
-                      <th width="10%">End Date </th>
                       <th width="17%">Action</th>
                   </tr>
                   <sql:query var="TeacherExams">
                       SELECT `Exam`.CID ,Exam.EName , Course.CName , Teacher.TName ,Exam.EDate ,
-                      Exam.TID,Exam.EID, Exam.startDate, Exam.endDate
+                      Exam.TID,Exam.EID
                       FROM `teacher` , `exam` , `course` , `teach`
                       WHERE 
                       <c:if test="${!empty param.FTID && param.FTID != 0}" >
@@ -67,16 +65,17 @@
                           <td>${TeacherExam.CName}</td>
                           <td>${TeacherExam.TName}</td>
                           <td nowrap="nowrap">${TeacherExam.EDate}</td>
-                          <td nowrap="nowrap">${TeacherExam.startDate}</td>
-                          <td nowrap="nowrap">${TeacherExam.endDate}</td>
                           <td nowrap="nowrap">
-                          <c:choose>
-                              <c:when test="${TeacherExam.TID == User.TID}">
-                              <a href="CP.jsp?action=exam&subaction=edit&EID=${TeacherExam.EID}&CID=${TeacherExam.CID}">Edit</a> 
-                              <a href="CP.jsp?action=exam&subaction=delete&EID=${TeacherExam.EID}$EID=${TeacherExam.EID}">Delete</a>                                  </c:when>
-                              <c:otherwise>
-                              <a href="CP.jsp?action=exam&subaction=view&EID=${TeacherExam.EID}">View</a>                                  </c:otherwise>
-                          </c:choose>                          </td>
+                              <c:choose>
+                                  <c:when test="${TeacherExam.TID == User.TID}">
+                                      <a href="CP.jsp?action=exam&subaction=edit&EID=${TeacherExam.EID}&CID=${TeacherExam.CID}">Edit</a> 
+                                      <a href="CP.jsp?action=exam&subaction=delete&EID=${TeacherExam.EID}&CID=${TeacherExam.CID}">Delete</a>
+                                  </c:when>
+                                  <c:otherwise>
+                                      <a href="CP.jsp?action=exam&subaction=view&EID=${TeacherExam.EID}&CID=${TeacherExam.CID}">View</a>
+                                  </c:otherwise>
+                              </c:choose>                          
+                          </td>
                       </tr>
                   </c:forEach>
               </table>

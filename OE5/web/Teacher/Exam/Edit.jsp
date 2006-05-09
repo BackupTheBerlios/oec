@@ -44,7 +44,7 @@ ${row}
 </c:forEach>--%>
  <form method="post" action="CP.jsp?action=exam&subaction=edit_update">
      <sql:query var="myExams" >
-         SELECT `exam`.EID , `exam`.ename , `question`.QID , `question`.question 
+         SELECT `exam`.EID , `exam`.ename , `exam`.edate , `question`.QID , `question`.question 
          FROM `question`  , `exam` ,`takeexam` 
          WHERE `takeexam`.EID = `exam`.EID
          AND `takeexam`.QID = `question`.QID
@@ -55,34 +55,17 @@ ${row}
      <input type="hidden" name="EID" value="${param.EID}">
      <table width="42%" cellspacing="2" cellpadding="2">
          <tr>
-             <td width="92"><label>Exam Name:</label></td>
-             <td width="205"><input name="ename" type="text" value="${myExams.rows[0].ename}" /></td>
+           <td width="123"><label>Exam Name:</label></td>
+           <td><input name="ename" type="text" value="${myExams.rows[0].ename}"/></td>
          </tr>
          <tr>
-             <td><label>Start Date:</label></td>
-             <td><label>Day:</label>
-                 <input name="sd" type="text"size="2" />
-                 <label>Month:</label>
-                 <input name="sm" type="text"size="2" />
-                 <label> Year:</label>
-                 <input name="sy" type="text" size="4" />
-             </td>
-         </tr>
-         <tr>
-             <td><label>End Date:</label></td>
-             <td><label> Day:</label>
-                 <input name="ed" type="text" size="2" />
-                 <label>Month:</label>
-                 <input name="em" type="text" size="2" />
-                 <label> Year:</label>
-                 <input name="ey" type="text" size="4" />
-             </td>
-         </tr>
+             <td width="123"><label>Submit time stamp:</label></td>
+             <td width="176"><label>
+               <input name="edate" type="text" value="${myExams.rows[0].edate}"  />
+             </label></td>
+         </tr>         
      </table>
-     <c:set value="${param.sy}-${param.sm}-${param.sd}" var="StartDate" />
-     <c:set value="${param.ey}-${param.em}-${param.ed}" var="EndDate" />
-     <input type="hidden" name="sdate" value="${(empty param.sy || empty param.sm || empty param.sd)?'null':StartDate}">
-     <input type="hidden" name="edate" value="${(empty param.ey || empty param.em || empty param.ed)?'null':EndDate}">
+     
      <p>
          <label></label>
          <label>Exam Questions:</label>

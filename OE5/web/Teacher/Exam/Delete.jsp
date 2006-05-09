@@ -44,6 +44,18 @@ Islam Negm
     <sql:param value="${param.EID}"/>
 </sql:update>
 
+<sql:update var="Deletedgroups">
+    DELETE FROM `submitexam`
+    WHERE `submitexam`.EID=?
+    <sql:param value="${param.EID}"/>
+</sql:update>
+
+<sql:update var="Deletedresults">
+    DELETE FROM `result`
+    WHERE `result`.EID=?
+    <sql:param value="${param.EID}"/>
+</sql:update>
+
 <sql:update var="DeletedExam">
     DELETE FROM `exam`
     WHERE `exam`.EID=?

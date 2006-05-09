@@ -38,21 +38,18 @@ Hamada
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
  <c:set var="subsectionTitle" value="Add New Exam" scope="request"/>
-
-<sql:update>
+<%--<c:forEach items="${param}" var ="row">
+    ${row}
+</c:forEach> --%>
+ <sql:update>
     DELETE FROM `takeexam`
     WHERE `takeexam`.EID=?
     <sql:param value="${param.EID}"/>
 </sql:update>
 
 <sql:update >
-    UPDATE Exam SET ename = ? ,  Edate = DEFAULT, CID = ?, 
-    StartDate = ${param.sdate}, EndDate = ${param.edate}
-    WHERE EID = ?
-    <sql:param value="${param.ename}" />
-    <sql:param value="${param.CID}" />
-    <sql:param value="${param.EID}" />
-    
+    UPDATE Exam SET `exam`.ename = ${param.ename} ,  `exam`.Edate = ${param.edate}, `exam`.CID = ${param.CID}
+    WHERE `exam`.EID = ${param.EID}   
 
 </sql:update>
 <c:forEach items="${paramValues.QID}" var="qustionnumber">
@@ -66,4 +63,4 @@ Hamada
 <jsp:forward page="../CP.jsp?action=exam&subaction=list" >
         <jsp:param name="NormalMessage" 
         value="Exam has updated correctly"/>
-</jsp:forward>
+</jsp:forward> 
