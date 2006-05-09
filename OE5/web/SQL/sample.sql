@@ -32,10 +32,10 @@ INSERT INTO `assign` VALUES(3,3,NULL);
 INSERT INTO `assign` VALUES(3,2,NULL);
 
 #exams#
-insert into exam values(1,1,1,"Midterm",default,default,default);
-insert into exam values(2,1,1,"Final Exam",default,default,default);
-insert into exam values(3,2,2,"Midterm",default,default,default);
-insert into exam values(4,2,2,"Final term",default,default,default);
+insert into exam values(1,1,1,"Midterm",default);
+insert into exam values(2,1,1,"Final Exam",default);
+insert into exam values(3,2,2,"Midterm",default);
+insert into exam values(4,2,2,"Final term",default);
 
 #questions#
 insert into question values(1,1,1,1,"which gate can do this [AB]",default);
