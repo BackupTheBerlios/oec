@@ -64,7 +64,7 @@ INSERT INTO `result` VALUES(2,1,"B+",80,DEFAULT);
 INSERT INTO `result` VALUES(3,1,"F",40,DEFAULT);
 
 #submit Exam#
-INSERT INTO `submitExam` VALUES(1,2, '5-5-2006', '6-5-2006',30);
-INSERT INTO `submitExam` VALUES(2,2, '5-5-2006', '6-5-2006',30);
-INSERT INTO `submitExam` VALUES(1,1, '5-5-2006', '6-5-2006',30);
-INSERT INTO `submitExam` VALUES(2,1, '5-5-2006', '6-5-2006',30);
+INSERT INTO `submitExam` VALUES(1,2, '2006-5-5', '2005-6-5',30);
+INSERT INTO `submitExam` VALUES(2,2, '2006-5-5', '2005-6-5',30);
+INSERT INTO `submitExam` VALUES(1,1, '2006-5-5', '2005-6-5',30);
+INSERT INTO `submitExam` VALUES(2,1, '2006-5-5', '2005-6-5',30);
