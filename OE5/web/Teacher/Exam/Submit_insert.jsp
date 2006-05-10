@@ -32,17 +32,15 @@ Hamada
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 <c:set var="subsectionTitle" value="View Exams" scope="request"/>
-<c:set value="'${param.sy}-${param.sm}-${param.sd}'" var="StartDate" />
-<c:set value="'${param.ey}-${param.em}-${param.ed}'" var="EndDate" />
-<input type="hidden" name="sdate" value="${(empty param.sy || empty param.sm || empty param.sd)?'null':StartDate}">
-<input type="hidden" name="edate" value="${(empty param.ey || empty param.em || empty param.ed)?'null':EndDate}">
+<c:set value="${param.sy}-${param.sm}-${param.sd}" var="StartDate" />
+<c:set value="${param.ey}-${param.em}-${param.ed}" var="EndDate" />
         
 <sql:update>
     INSERT INTO `SubmitExam` VALUES(?,?,?,?,?)
     <sql:param value="${param.EID}"/>
     <sql:param value="${param.GID}"/>
-    <sql:param value="${sdate}"/>
-    <sql:param value="${edate}"/>
+    <sql:param value="${StartDate}"/>
+    <sql:param value="${EndDate}"/>
     <sql:param value="${param.period}"/>
 </sql:update>
 

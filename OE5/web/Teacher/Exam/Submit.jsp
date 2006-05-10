@@ -73,8 +73,7 @@ Hamada
                 -Month:
                 <input name="sm" type="text" id="sm" size="2" maxlength="2" /> 
                 -Year:
-                <input name="sy" type="text" id="sy" size="4" maxlength="4" />
-            </td>
+                <input name="sy" type="text" id="sy" size="4" maxlength="4" />            </td>
         </tr>
         <tr>
             <td><label>End Date:</label></td>
@@ -88,12 +87,6 @@ Hamada
         <tr>
             <td><label>Period:</label></td>
             <td><input name="period" type="text" id="period" /></td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td><label>
-                <input type="submit" name="Submit2" value="Submit" />
-            </label></td>
         </tr>
     </table>
     <p>&nbsp;</p>

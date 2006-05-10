@@ -44,7 +44,7 @@ ${row}
 </c:forEach>--%>
  <form method="post" action="CP.jsp?action=exam&subaction=edit_update">
      <sql:query var="myExams" >
-         SELECT `exam`.EID , `exam`.ename , `exam`.edate , `question`.QID , `question`.question 
+         SELECT `exam`.EID , `exam`.ename , `question`.QID , `question`.question 
          FROM `question`  , `exam` ,`takeexam` 
          WHERE `takeexam`.EID = `exam`.EID
          AND `takeexam`.QID = `question`.QID
@@ -95,14 +95,7 @@ ${row}
              </tr>
          </c:forEach>
      </table>
-     <p>
-         <label></label>
-     </p>
-     <p>
-         <label></label>
-     </p>
-     <label></label>
-     <p>
+     
          <input type="submit" name="Submit" value="Submit">
          <input type="reset" name="Reset" value="Reset">
      </p>

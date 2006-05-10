@@ -48,9 +48,10 @@ Hamada
 </sql:update>
 
 <sql:update >
-    UPDATE Exam SET `exam`.ename = ${param.ename} ,  `exam`.Edate = DEFAULT , `exam`.CID = ${param.CID}
-    WHERE `exam`.EID = ${param.EID}   
-
+    UPDATE Exam SET `exam`.ename = ?
+    WHERE `exam`.EID = ?   
+    <sql:param value="${param.ename} "/>
+    <sql:param value="${param.EID}"/>
 </sql:update>
 <c:forEach items="${paramValues.QID}" var="qustionnumber">
     <sql:update>

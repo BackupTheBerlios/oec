@@ -53,13 +53,7 @@ TO DO:
          <tr>
            <td><label>Exam Name:</label></td>
            <td><input name="ename" type="text" value="${myExams.rows[0].ename}" /></td>
-         </tr>
-         <tr>
-             <td width="126">Submit time stamp: </td>
-             <td width="180"><label>
-               <input type="text" value="${myExams.rows[0].edate}" name="textfield" />
-             </label></td>
-         </tr>         
+         </tr>        
      </table>
      
      <p>
@@ -77,25 +71,7 @@ TO DO:
                  <td><label>${question.question}</label></td>
              </tr>
          </c:forEach>
-         <sql:query var="notMyExams" >
-             SELECT question.QID, question.question
-             FROM question, course
-             WHERE question.CID = course.CID 
-             AND course.CID = ?
-             AND question.QID NOT IN (
-             SELECT takeexam.QID 
-             FROM takeexam
-             WHERE takeexam.EID = ?)
-             <sql:param value="${param.CID}"/>
-             <sql:param value="${param.EID}"/>
-         </sql:query>
          
-         <c:forEach items="${notMyExams.rows}" var="question">
-             <tr>
-                 <td> <input name="QID" type="checkbox"  value="${question.QID}" > </td>
-                 <td><label>${question.question}</label></td>
-             </tr>
-         </c:forEach>
      </table>
      
      
