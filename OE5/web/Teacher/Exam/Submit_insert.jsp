@@ -44,6 +44,26 @@ Hamada
     <sql:param value="${param.period}"/>
 </sql:update>
 
+<%-- Message Students --%>
+
+<sql:query var="Students">
+    SELECT Student.SID FROM Student, `Assign`
+    WHERE Student.SID = `Assign`.SID AND `Assign`.GID = ?
+    <sql:param value="${param.GID}" />
+</sql:query>
+<c:forEach items="${Students.rows}" var="Student">
+    <sql:update>    
+        INSERT INTO `Message` VALUES (DEFAULT,?,?,?,DEFAULT,?,?)
+        <sql:param value="${Student.SID}" />
+        <sql:param value="exam"/>
+        <sql:param value="${User.TName} has added a new exam <b>${param.ename} in ${param.cname}</b>" />
+        <sql:param value="${param.EID}"/>
+        <sql:param value="student"/>
+    </sql:update>
+</c:forEach>
+
+
+
 <jsp:forward page="../CP.jsp?action=exam&subaction=list" >
     <jsp:param name="NormalMessage" 
     value="Exam has submited to the group correctly"/>

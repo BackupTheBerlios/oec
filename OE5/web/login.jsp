@@ -31,9 +31,8 @@
                     
                     
                     <sql:update sql="UPDATE Student SET login = CURRENT_TIMESTAMP() WHERE SID = ${User.SID}" />
-                    <c:redirect url="/Student/CP.jsp?action=status" >                        
-                        <c:param name="NormalMessage" value="You have <b>${Messages.rows[0]['']}</b> new message/s"/>                        
-                    </c:redirect>
+                    <c:set var="NormalMessage" value="You have <b>${Messages.rows[0]['']}</b> new message/s" scope="session" />
+                    <c:redirect url="/Student/CP.jsp?action=status" />
                 </c:if>
                 
             </c:when>

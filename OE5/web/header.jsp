@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <title>Oinle Examination Center</title>
+    <title>Online Examination Center</title>
     <link href="/OE/css.css" rel="stylesheet" type="text/css" />
     <script language="JavaScript" type="text/JavaScript" src="/OE/validation.js"></script>
 </head>

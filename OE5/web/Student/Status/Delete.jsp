@@ -26,12 +26,19 @@ Tanahy
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+<c:if test="${empty param.EID}" >
+    <c:set var="ErrorMessage" value='Please press on <b>"Delete"</b> link in the <b>\"Message List\"</b>' scope="session" />
+    <c:redirect url="../CP.jsp?action=exam&subaction=list" />
+</c:if>
+
 <sql:update>
     DELETE FROM Message WHERE message.MID = ?
     <sql:param value="${param.MID}"/>
 </sql:update>
 
-<jsp:forward page="../CP.jsp?action=status&subaction=messages" >
-    <jsp:param name="NormalMessage"
-    value="The message is deleted succefully from your inbox"/>
-</jsp:forward>
+
+<c:set var="ErrorMessage" value='The message is deleted succefully from your inbox' scope="session" />
+<c:redirect url="../CP.jsp?action=status&subaction=messages" />
+    
+

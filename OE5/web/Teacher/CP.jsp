@@ -18,7 +18,7 @@ Abbas Adel
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 <jsp:include page="../header.jsp" />
-    <h1>Welcome <i><c:out value="${User.tname}" /></i></h1>
+    <h1>Welcome <i>${User.degree} ${User.tname}</i></h1>
     <table width="100%" cellspacing="4">
         <tr>
             <td valign="top" width="180"><jsp:include page="Menu.jsp" /></td>

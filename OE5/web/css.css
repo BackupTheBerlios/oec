@@ -205,4 +205,8 @@ a:hover {
     font-style: italic;
 }
 
+#counter { color:#FF0000; text-align:right;}
+
+
+.th2 th{background-color:#5BADFF;}
 /*

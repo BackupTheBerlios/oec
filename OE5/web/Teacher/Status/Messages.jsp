@@ -49,7 +49,7 @@ Abbas Adel
             <tr>
                 <td>${Message.message}</td>
                 <td align="center" nowrap="nowrap">${Message.mdate}</td>
-                <td align="center"><a href="CP.jsp?action=status&subaction=delete&MID=${Message.MID}">Delete</a></td>
+                <td align="center"><a href="CP.jsp?action=status&subaction=delete&MID=${Message.MID}" onclick="return confirm('Are you sure');">Delete</a></td>
             </tr>
         </c:forEach>
     </table>

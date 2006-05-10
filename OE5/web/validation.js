@@ -138,3 +138,4 @@ function checkAll()
 	for(var i=0; i < document.getElementsByName("CID").length; i++)
 		document.getElementsByName("CID")[i].checked = !document.getElementsByName("CID")[i].checked;
 }
+

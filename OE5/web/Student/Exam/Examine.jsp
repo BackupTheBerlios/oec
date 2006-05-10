@@ -14,9 +14,9 @@ EID:int             Question ID to edit
 User:sessionObject  Contains all user information about user found in Student table                 
 
 RESPONSE VARIABLES:
-EID:int  
-QID[]:int
-OID[]:int
+EID:int             Exam ID
+QID[]:int           contain all question IDs
+OID[]:int           contain the answer ( OID[1] )
 
 TO DO:
 1- show exam name, course name, auther
@@ -28,10 +28,8 @@ TO DO:
 
 <c:set var="subsectionTitle" value="Examine" scope="request"/>
 <c:if test="${empty param.EID}" >
-    <jsp:forward page="../CP.jsp?action=exam&subaction=list" >
-        <jsp:param name="ErrorMessage" 
-        value='Please press on <b>"Examine"</b> link in the <b>\"Exam List\"</b>'/>
-    </jsp:forward>
+    <c:set var="ErrorMessage" value='Please press on <b>"Examine"</b> link in the <b>\"Exam List\"</b>' scope="session" />
+    <jsp:forward page="../CP.jsp?action=exam&subaction=list" />
 </c:if>
 
 <sql:query var="Exam">
@@ -40,11 +38,13 @@ TO DO:
     WHERE teacher.TID = exam.TID AND exam.CID = Course.CID AND EID = ${param.EID}
 </sql:query>
 
-<form  method="post" action="CP.jsp?action=exam&subaction=correct">
+<form  method="post" action="CP.jsp?action=exam&subaction=correct" id="exam">
     <table width="100%" cellspacing="2" cellpadding="2" class="list">
         <tr>
             <th>${Exam.rows[0].ename} - ${Exam.rows[0].cname} - <i>by ${Exam.rows[0].degree}  ${Exam.rows[0].tname} </i>
-            <input name="EID" type="hidden" id="EID" value="EID" /></th>
+                <input name="EID" type="hidden" id="EID" value="EID" />
+                
+            </th>
         </tr>
         <sql:query var="Questions">
             SELECT question.QID, question.question
@@ -61,8 +61,8 @@ TO DO:
                     <sql:query var="Options" sql="SELECT oname, OID FROM `Option` WHERE QID = ${Question.QID}"/>
                     
                     <c:forEach items="${Options.rows}" var="Option">
-                        <input type="hidden" name="Q" value="${Question.QID}" > 
-                        <p><input name="QID[${Question.QID}]" type="radio" value="${Option.OID}" />${Option.oname}</p>
+                        <input type="hidden" name="QID" value="${Question.QID}" > 
+                        <p><input name="OID[${Question.QID}]" type="radio" value="${Option.OID}" />${Option.oname}</p>
                     </c:forEach>
                     
                 </td>

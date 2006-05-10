@@ -9,17 +9,16 @@
                 <th width="22%">Auther</th>
                 <th width="10%">Start Date </th>
                 <th width="10%">End Date </th>
-                <th width="10%">Period </th>
-                <th width="17%">Action</th>
+                <th width="10%">Mark </th>
+                <th width="10%">Grade </th>              
             </tr>
             <sql:query var="Exams">
-                SELECT Exam.EID, Exam.ename, Course.cname, Teacher.tname, submitExam.StartDate, submitExam.EndDate, submitExam.period
-                FROM Exam, Student, `assign`,  submitExam, course, teach, teacher
-                WHERE  Student.SID = `assign`.SID AND `assign`.GID = submitExam.GID
+SELECT Exam.EID, Exam.ename, Course.cname, Teacher.tname, submitExam.StartDate, submitExam.EndDate, mark, grade
+                FROM Exam, Student, `assign`,  submitExam, course, teach, teacher, `result`
+                WHERE  `result`.SID = Student.SID AND Student.SID = `assign`.SID AND `assign`.GID = submitExam.GID
                 AND `submitExam`.EID = exam.EID AND exam.CID = course.CID AND exam.TID = teacher.TID AND course.CID = teach.CID 
                 AND teach.TID = teacher.TID 
                 AND Student.SID = ${User.SID}
-                AND submitExam.EndDate >= CURRENT_DATE()
                 
             </sql:query>
             
@@ -31,8 +30,8 @@
                     <td>${Exam.TName}</td>
                     <td align="center" nowrap="nowrap">${Exam.startDate}</td>
                     <td align="center" nowrap="nowrap">${Exam.endDate}</td>
-                    <td align="center" nowrap="nowrap">${Exam.period} Minutes</td>
-                    <td nowrap="nowrap"><a href="CP.jsp?action=exam&subaction=prepare&EID=${Exam.EID}" onclick="return confirm('Are you sure that you want to have ${Exam.CName} exam? \n Press OK when you are ready.');">Examine</a> </td>
+                    <td align="center">${Exam.mark}</td>
+                    <td align="center">${Exam.grade}</td>
                 </tr>
             </c:forEach>
         </table>

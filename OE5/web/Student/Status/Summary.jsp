@@ -29,40 +29,21 @@ Hamada
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 <c:set var="subsectionTitle" value="Summary" scope="request"/>
+
 <table width="100%" cellspacing="2" cellpadding="2">
     <tr>
-        <th>Courses</th>
+        <th>Your Information</th>
     </tr>
     <tr>
-        <td><p><strong>You are teaching 9 courses from 20 courses added to the system.</strong></p>
-        TABLE FROM COURSE-LIST </td>
+        <td>
+            <p><b>Name:</b> ${User.sname}</p>
+            <p><b>Address:</b> ${User.address}</p>
+            <p><b>EMail:</b> ${User.email}</p>
+            <p><b>Birth Date:</b> ${User.birth}</p>
+            <p><b>Tell:</b> ${User.tell}</p>
+            <p><b>Last Login:</b> ${User.login}</p>
+            
+        </td>
     </tr>
-    <tr>
-        <th>Questions</th>
-    </tr>
-    <tr>
-        <td><p><strong>You have added 40 question from 340 question in the system.</strong></p>
-        TABLE FROM QUESTION-LIST </td>
-    </tr>
-    <tr>
-        <th>Exams</th>
-    </tr>
-    <tr>
-        <td><p><strong>You have submitted 20 exams from 120 exams in the system</strong></p>
-        TABLE FROM EXAM-LIST </td>
-    </tr>
-    <tr>
-        <th>Groups </th>
-    </tr>
-    <tr>
-        <td><p><strong>You have added 2 groups from 5 groups</strong></p>
-        TABLE FROM COURSE-LIST </td>
-    </tr>
-    <tr>
-        <th>Students</th>
-    </tr>
-    <tr>
-        <td><p><strong>You have 30 student from 300 student registed on the system.</strong></p>
-        TABLE FROM COURSE-LIST </td>
-    </tr>
+  
 </table>

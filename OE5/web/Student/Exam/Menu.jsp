@@ -27,8 +27,12 @@ Abbas Adel
             <a href="CP.jsp?action=exam&subaction=list" >List</a>
         </li>
 
-        <li class="${param.subaction == 'examin'? 'current':''}">
+        <li class="${param.subaction == 'examine'? 'current':''}">
             <a href="CP.jsp?action=exam&subaction=examine">Examine</a>
         </li>
+        
+        <li class="${param.subaction == 'result'? 'current':''}">
+            <a href="CP.jsp?action=exam&subaction=result">Result</a>
+        </li> 
     </ul>
 

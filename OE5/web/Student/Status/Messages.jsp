@@ -24,6 +24,7 @@ JOP TO:
 Abbas Adel
 
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
@@ -49,7 +50,7 @@ Abbas Adel
             <tr>
                 <td>${Message.message}</td>
                 <td align="center" nowrap="nowrap">${Message.mdate}</td>
-                <td align="center"><a href="CP.jsp?action=status&subaction=delete&MID=${Message.MID}">Delete</a></td>
+                <td align="center"><a href="CP.jsp?action=status&subaction=delete&MID=${Message.MID}" onclick=" return confirm('Are you sure?');">Delete</a></td>
             </tr>
         </c:forEach>
     </table>
@@ -82,8 +83,6 @@ Abbas Adel
 </c:if>
 
 <c:if test="${NewMessages.rowCount == 0 &&  OldMessages.rowCount == 0}" >
-    <jsp:forward page="../CP.jsp?action=status&subaction=summary" >
-        <jsp:param name="ErrorMessage" 
-        value="There is no messages in your inbox"/>
-    </jsp:forward>
+    <c:set var="ErrorMessage" value='There is no messages in your inbox' scope="session" />
+     <jsp:forward page="../CP.jsp?action=status&subaction=summary" />
 </c:if>

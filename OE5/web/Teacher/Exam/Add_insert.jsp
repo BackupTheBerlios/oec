@@ -69,6 +69,9 @@ Ahmed Tanahy
 </c:forEach>
 
 
+
+
+
 <jsp:forward page="../CP.jsp?action=exam&subaction=list" >
     <jsp:param name="NormalMessage" 
     value="Exam has inserted correctly"/>

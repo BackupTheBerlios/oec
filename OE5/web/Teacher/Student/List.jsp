@@ -8,9 +8,10 @@ CREATION DATE / BY:
 
 LAST MODIFY / BY:
 2 May 2006 BY Abbas Adel
+9 may 2006 By hamada 
 
 MODIFICATIONS:
-1- 
+1- done
 
 REQUEST VARIABLES:
 User:Session        all user information (TID)
@@ -22,10 +23,11 @@ TO DO:
 1- List all student related to this teacher (assigned to any of his groubs)
 2- make the action (View) redirect to (CP.jsp?action=student&subaction=view&SID=???)
 
-JOP FOR:
+JOB FOR:
 Hamada
 
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
@@ -36,8 +38,8 @@ Hamada
         <tr>
             <td align="right">
                 <select name="GID" onchange="MM_jumpMenu('parent',this,0)">
-                    <option value="CP.jsp?action=student&subaction=list&GID=0">All</option>
-                    <option value="CP.jsp?action=student&subaction=list&GID=1">gorub1</option>
+                    <option value="CP.jsp?action=student&subaction=list&GID=0" ${param.GID==0?"selected":""}>All</option>
+                    <option value="CP.jsp?action=student&subaction=list&GID=1" ${param.GID==1?"selected":""}>gorub1</option>
                 </select>
             </td>
         </tr>
@@ -50,15 +52,15 @@ Hamada
                         <th>Action</th>
                     </tr>
                     <sql:query var="students">
-                        SELECT  student.SID, student.SName, assign.GID
+                        SELECT   student.SID, student.SName, assign.GID
                         FROM student,assign
                         WHERE student.SID=assign.SID
-                        AND assign.GID in(SELECT `group`.GID FROM `group` 
+                        AND assign.GID  in(SELECT `group`.GID FROM `group` 
                                
                         <c:choose>
                             <c:when test="${param.GID==0 || empty param.GID}">
                                 WHERE `group`.TID=?
-                                <sql:param value="${User.TID}" />                                                           
+                                <sql:param value="${User.TID}" />                                                 
                             </c:when>
                             <c:when test="${param.GID==assign.GID}">
                                 WHERE `group`.TID=?
@@ -69,13 +71,24 @@ Hamada
                         </c:choose>
                         ) GROUP BY student.SID
                     </sql:query>
+                   
+                    
+                    
+                                  
                     <c:forEach items="${students.rows}" var="student">
+                        <sql:query var="group" >  
+                        SELECT COUNT(*) AS `count` FROM 
+                        `assign`
+                        WHERE SID=?
+                        <sql:param value="${student.SID}"/>  
+                    </sql:query>                             
+                                                   
                         <tr>
                             <td>${student.sname}</td>
-                            <td>--</td>
+                            <td>${group.rows[0]['']}</td>                     
                             <td align="center"><a href="CP.jsp?action=student&subaction=view&SID=${student.SID}">View</a></td>
                         </tr>
-                    </c:forEach>
+                    </c:forEach>    
                 </table>
             </td>
         </tr>
