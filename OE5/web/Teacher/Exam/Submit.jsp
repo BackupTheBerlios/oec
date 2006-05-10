@@ -35,7 +35,7 @@ Hamada
 <c:set var="subsectionTitle" value="Submit Exams" scope="request"/>
 
 
-<form  method="post" action="CP.jsp?action=exam&subaction=submit_insert">
+<form  method="post" action="CP.jsp?action=exam&subaction=submit_insert" >
     <sql:query var="Groups">
         SELECT `group`.GID ,`group`.gname FROM `group` WHERE `group`.TID =?
         <sql:param value="${User.TID}"/>

@@ -73,16 +73,16 @@ Abbas Adel
                     Birth = ?,
                     Email = ?, 
                     Tell = ?,
-                    Address = ?,
+                    Address = ?
                     WHERE TID = ?
                     <sql:param value="${param.password}" />
                     <sql:param value="${param.name}" />
                     <sql:param value="${param.degree}" />
-                    <sql:param value="${param.birth_year}-${param.birth_month}-${param.birth_day}"/>
+                    <sql:param value="${param.birth}"/>
                     <sql:param value="${param.email}" />
                     <sql:param value="${param.tell}" />
                     <sql:param value="${param.address}" />
-                    <sql:param value="${param.TID}" />
+                    <sql:param value="${User.TID}" />
                 </sql:update>
                 
                 <sql:query  var="teacherInfo" sql=" SELECT * FROM Teacher WHERE TID = ${param.TID}" />                
