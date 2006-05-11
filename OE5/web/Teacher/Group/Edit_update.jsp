@@ -1,24 +1,21 @@
 <%--
 
 FILE DESCRIPTION:
-Update the Question after edit
+Update Group information after edit
 
 CREATION DATE / BY:
-18 April 2006 BY Abbas Adel
+11 May 2006 BY Abbas Adel
 
 LAST MODIFY / BY:
-18 April 2006 BY Abbas Adel
+11 May 2006 BY Abbas Adel
 
 MODIFICATIONS:
-1- Just created
+1- 
 
 REQUEST VARIABLES:
-QID:int             Question ID to update
-CID:int             Course ID
-question:String     Question String
-options[]:String    String array of options           
-SelectedOption:int  SelectedOption number
-User:sessionObject  Contains all user information about user found in Teacher table
+GID:int
+gname:String
+SID[]:int
                  
 
 
@@ -31,6 +28,40 @@ TO DO:
 
 
 JOP TO:
-Hamada 
+Islam Negm
 
 --%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+<c:set var="subsectionTitle" value="Add New Exam" scope="request"/>
+
+<c:forEach items="${param}" var ="row">
+    ${row}
+</c:forEach>
+
+ <sql:update>
+     UPDATE `group` set `group`.GName=?   WHERE `group`.GID=?
+     <sql:param value="${param.gname}" />
+     <sql:param value="${param.GID}"/>   
+ </sql:update>
+
+<c:forEach items="${paramValues.SID}" var="Student">
+    <sql:update>       
+        DELETE FROM `assign`
+        WHERE `assign`.GID=?
+        <sql:param value="${param.GID}"/>    
+    </sql:update>
+</c:forEach>
+<sql:query var="MAXGID" sql="SELECT MAX(GID) AS GID FROM `group`"/>
+<c:forEach items="${paramValues.SID}" var="Student">
+    <sql:update>
+        INSERT INTO `assign` VALUES(?,?,DEFAULT)
+        <sql:param value="${param.GID}" />
+        <sql:param value="${Student}" />
+    </sql:update>                      
+</c:forEach>
+<jsp:forward page="../CP.jsp?action=group&subaction=list" >
+    <jsp:param name="NormalMessage" 
+    value="Exam has updated correctly"/>
+</jsp:forward> 

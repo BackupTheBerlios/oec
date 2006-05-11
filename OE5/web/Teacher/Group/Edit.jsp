@@ -13,9 +13,13 @@ MODIFICATIONS:
 1- Just created
 
 REQUEST VARIABLES:
-QID:int             Question ID to edit
+GID:int             Question ID to edit
 User:sessionObject  Contains all user information about user found in Teacher table                 
 
+RESPONSE VARIABLES:
+GID:int
+gname:String
+SID[]:int
 
 TO DO:
 1- List this Teacher courses where the Question's Course is selected in the menu
@@ -41,59 +45,53 @@ Islam Negm
 </c:if>
 <c:set var="subsectionTitle" value="Edit Group" scope="request"/>
         
-   
-
-
-<c:if test="${param.Submit}">
-    <c:redirect url="Edit_update.jsp" />
-</c:if>
-<form method="post">
+<form method="post" action="CP.jsp?action=group&subaction=edit_update">
 
     <%-- Store QID value here --%>
-    <input type="hidden" name="QID" value="???" />
+    <input type="hidden" name="GID" value="${param.GID}" />
     <%-- List teacher's courses here --%>
-  <p>
+    <sql:query var="Group" >
+        SELECT `group`.gname FROM `group` where `group`.gid=${param.GID}
+    </sql:query>
+    <p>       
         <label>Group name :</label>
-        <label>
-        <input name="textfield" type="text" value="Group Name" />
-        </label>
-  </p>
-    <p>
-      <label></label>
-        <label>Students:</label><label></label>
+        <input name="gname" type="text" value="${Group.rows[0].gname}" />
     </p>
-    <table width="200" border="0">
-      <tr>
-        <td width="29">&nbsp;</td>
-        <td width="161">Name</td>
-      </tr>
-      <tr>
-        <td><label>
-          <input name="checkbox" type="checkbox" value="checkbox" checked="checked" />
-        </label></td>
-        <td>Ahmed Eltanahy </td>
-      </tr>
-      <tr>
-        <td><label>
-          <input name="checkbox" type="checkbox" value="checkbox" checked="checked" />
-        </label></td>
-        <td>Ahmed Eltanahy </td>
-      </tr>
-      <tr>
-        <td><label>
-          <input type="checkbox" name="checkbox" value="checkbox" />
-        </label></td>
-        <td>Ahmed Eltanahy </td>
-      </tr>
-      <tr>
-        <td><label>
-          <input type="checkbox" name="checkbox" value="checkbox" />
-        </label></td>
-        <td>Ahmed Eltanahy </td>
-      </tr>
+
+    <table width="100%" cellpadding="2" cellspacing="2" class="list">
+        <tr>
+            <th colspan="2">Students' Names</th>
+        </tr>
+        
+        <%-----------------------------------------------------------------------%>
+        <%--<sql:query var="MyStudents" >
+        SELECT `student`.SNAME ,`student`.SID
+        FROM `student`,`assign`
+        WHERE `student`.SID =`assign`.SID
+        AND `assign`.GID=${param.GID}             
+        </sql:query>
+         
+        <c:forEach items="${MyStudents.rows}" var="student">
+        <tr>
+        <td> <input name="QID" type="checkbox"  value="${student.SID}" > </td>
+        <td><label>${student.sname}</label></td>
+        </tr>
+        </c:forEach>--%>
+        <%-----------------------------------------------------------------------%>       
+        <sql:query var="MyStudents" >
+            SELECT `student`.SNAME ,`student`.SID
+            FROM `student`             
+        </sql:query>
+         
+        <c:forEach items="${MyStudents.rows}" var="student">
+            <tr>
+                <td width="10"> <input name="SID" type="checkbox"  value="${student.SID}" > </td>
+                <td>${student.sname}</td>
+            </tr>
+        </c:forEach>
     </table>
     <p>
-        <input type="submit" name="Submit" value="Submit">
-        <input type="reset" name="Reset" value="Reset">
+        <input type="submit"  value="Submit">
+        <input type="reset"  value="Reset">
     </p>
 </form>
