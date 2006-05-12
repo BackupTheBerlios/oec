@@ -63,7 +63,7 @@ Hamada
             </td>
         </tr>
         <tr>
-            <td> Degree: </td>
+            <td> Degree:</td>
             <td><select name="degree">
                 <option value="4" ${TeacherData.rows[0].Degree == Professor?"selected":""}>Professor</option>
                 <option value="3" ${TeacherData.rows[0].Degree == Lecturer?"selected":""}>Lecturer</option>

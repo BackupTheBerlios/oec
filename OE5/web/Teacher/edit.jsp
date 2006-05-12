@@ -69,7 +69,7 @@ Abbas Adel
                     UPDATE Teacher
                     SET Password = ?, 
                     tName = ?, 
-                    Degree = ?
+                    Degree = ?,
                     Birth = ?,
                     Email = ?, 
                     Tell = ?,
@@ -83,11 +83,7 @@ Abbas Adel
                     <sql:param value="${param.tell}" />
                     <sql:param value="${param.address}" />
                     <sql:param value="${User.TID}" />
-                </sql:update>
-                
-                <sql:query  var="teacherInfo" sql=" SELECT * FROM Teacher WHERE TID = ${param.TID}" />                
-                <c:set var="User" value="${teacherInfo.rows[0]}" scope="session" />
-                
+                </sql:update>               
                 <c:redirect url="/Teacher/CP.jsp?action=status" >                        
                     <c:param name="NormalMessage" value="Your Information were updated successfully!"/>                        
                 </c:redirect>
