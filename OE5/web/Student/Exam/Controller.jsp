@@ -16,6 +16,7 @@ Abbas Adel
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <div id="SectionTitle"><b>Exam Control</b></div>
 <c:if test="${! empty ErrorMessage}"><div id="ErrorMessage" ><b>Attention:</b><p><c:out value="${ErrorMessage}" escapeXml="false" /></p></div><c:remove var="ErrorMessage" /></c:if>
 <c:if test="${! empty NormalMessage}"><div id="NormalMessage"><b>Message:</b><p><c:out value="${NormalMessage}" escapeXml="false" /></p></div><c:remove var="NormalMessage" /></c:if>

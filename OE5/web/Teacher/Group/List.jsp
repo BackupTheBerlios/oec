@@ -24,6 +24,29 @@ Islam Negm
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 <c:set var="subsectionTitle" value="List Groups" scope="request"/>
+
+     <sql:query var="groups">
+         SELECT `group`.GID,`group`.gname,`group`.tid,`teacher`.tname,COUNT(`assign`.sid) AS `count`,`group`.gdate
+         FROM `group`,`assign`,`teacher`      
+         WHERE
+         <c:if test="${param.FTID > 0  }" >
+             `teacher`.TID= ?  AND  
+             <sql:param value="${param.FTID}" />   
+         </c:if>
+         `teacher`.TID = `group`.TID  AND `group`.GID = `assign`.GID
+         GROUP BY `Assign`.GID                                                                        
+     </sql:query>    
+                                               
+     <%--<sql:param value="${User.TID}" />--%>
+
+
+<%-- forward if no groups  --%>
+    <c:if test="${groups.rowCount == 0}" >
+        <jsp:forward page="../CP.jsp?action=group&subaction=add" >
+            <jsp:param name="ErrorMessage"  value="Please create at least one group"/>
+        </jsp:forward>
+    </c:if>
+    
 <form method="post" action="CP.jsp?action=group&subaction=edit_update">
     <table width="100%" cellspacing="2" cellpadding="2">
         <tr>
@@ -51,32 +74,6 @@ Islam Negm
                         <th width="16%">Action</th>
                     </tr>
                     
-                    
-                    <c:if test="${!empty param.FTID || param.FTID != 0}" >
-                        <sql:query var="groups">
-                            SELECT `group`.GID,`group`.gname,`group`.tid,`teacher`.tname,COUNT(`assign`.sid) AS `count`,`group`.gdate
-                            FROM `group`,`assign`,`teacher`      
-                            WHERE
-                            `teacher`.TID=?  AND                                                       
-                            `teacher`.TID = `group`.TID  AND `group`.GID = `assign`.GID
-                            GROUP BY `group`.GID                                            
-                            <sql:param value="${param.FTID}" />                        
-                        </sql:query>
-                        <%--<sql:param value="${User.TID}" />--%>
-                    </c:if> 
-                    <c:if test="${empty param.FTID || param.FTID == 0}" >
-                        <sql:query var="groups">
-                            SELECT `group`.GID,`group`.gname,`group`.tid,`teacher`.tname,COUNT(`assign`.sid) AS `count`,`group`.gdate
-                            FROM `group`,`assign`,`teacher`      
-                            WHERE                           
-                            `teacher`.TID = `group`.TID  AND `group`.GID = `assign`.GID
-                            GROUP BY `group`.GID                                                                        
-                        </sql:query>    
-                                               
-                        <%--<sql:param value="${User.TID}" />--%>
-                    </c:if> 
-                    
-                    
                     <c:forEach items="${groups.rows}" var="group" >
                         <tr>
                             <td>${group.gname} </td>
@@ -84,21 +81,25 @@ Islam Negm
                             <td>${group.count}</td>
                             <td>${group.gdate} </td>
                             <c:choose>
-                                <c:when test="${param.FTID == User.TID}">
-                                    <td><a href="CP.jsp?action=group&subaction=edit&GID=${group.GID}">Edit</a>
-                                    <a href="CP.jsp?action=group&subaction=delete&GID=${group.GID}">Delete</a>  </td>
+                                <c:when test="${group.TID == User.TID}">
+                                    <td>
+                                        <a href="CP.jsp?action=group&subaction=edit&GID=${group.GID}">Edit</a>
+                                        <a href="CP.jsp?action=group&subaction=delete&GID=${group.GID}">Delete</a>
+                                    </td>
                                 </c:when>
+                                <%--
                                 <c:when test="${param.FTID==0}">
-                                    <c:if test="${group.TID != User.TID}">
-                                        <td><a href="CP.jsp?action=group&subaction=view&GID=${group.GID}">View</a> </td>
-                                    </c:if>  
-                                    <c:if test="${group.TID == User.TID}">
-                                        <td><a href="CP.jsp?action=group&subaction=edit&GID=${group.GID}">Edit</a>
-                                        <a href="CP.jsp?action=group&subaction=delete&GID=${group.GID}">Delete</a>  </td>
-                                    </c:if>  
+                                <c:if test="${group.TID != User.TID}">
+                                <td><a href="CP.jsp?action=group&subaction=view&GID=${group.GID}">View</a> </td>
+                                </c:if>  
+                                <c:if test="${group.TID == User.TID}">
+                                <td><a href="CP.jsp?action=group&subaction=edit&GID=${group.GID}">Edit</a>
+                                <a href="CP.jsp?action=group&subaction=delete&GID=${group.GID}">Delete</a>  </td>
+                                </c:if>  
                                 </c:when>
+                                --%>
                                 <c:otherwise>
-                                    <td><a href="CP.jsp?action=group&subaction=view&FTID=${group.TID}">View</a> </td>
+                                    <td><a href="CP.jsp?action=group&subaction=view&GID=${group.GID}">View</a> </td>
                                 </c:otherwise>
                             </c:choose>                       
                         </tr>

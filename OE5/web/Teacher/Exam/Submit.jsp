@@ -35,27 +35,46 @@ Hamada
 <c:set var="subsectionTitle" value="Submit Exams" scope="request"/>
 
 
-<form  method="post" action="CP.jsp?action=exam&subaction=submit_insert" >
+<form action="CP.jsp?action=exam&subaction=submit_insert"  method="post" onsubmit="MM_validateForm('sd','','RinRange1:31','sm','','RinRange1:12','sy','','RinRange2006:2015','ed','','RinRange1:31','em','','RinRange1:12','ey','','RinRange2006:2015','period','','RisNum');return document.MM_returnValue">
     <sql:query var="Groups">
         SELECT `group`.GID ,`group`.gname FROM `group` WHERE `group`.TID =?
         <sql:param value="${User.TID}"/>
     </sql:query>
+    <%-- no group found --%>
+    <c:if test="${Groups.rowCount == 0}">
+        <jsp:forward page="../CP.jsp?action=group&subaction=add" >
+            <jsp:param name="ErrorMessage" 
+            value="You have to create group before submiting any exams" />
+        </jsp:forward>
+    </c:if>
+    
     <sql:query var="Exams">
         SELECT `exam`.EID ,`exam`.ename , `course`.cname
         FROM `exam` , `course`
         WHERE `exam`.TID = ?  AND `course`.CID = `exam`.CID
         <sql:param value="${User.TID}"/>
     </sql:query>
-    <p><label></label><br />
+    
+        <%-- no exam  found --%>
+    <c:if test="${Exams.rowCount ==  0}">
+        <jsp:forward page="../CP.jsp?action=exam&subaction=add" >
+            <jsp:param name="ErrorMessage" 
+            value="You have to create exam before submiting any exams" />
+        </jsp:forward>
+    
+    </c:if>
+    <p><br />
     </p>
-    <table width="302" border="0">
+    <input type="hidden" name="ename" value="${Exam.ename}">
+    <input type="hidden" name="cname" value="${Exam.cname}">
+    <table width="100%" border="0">
         <tr>
-            <td width="65"><label>Groups:</label></td>
-            <td width="227"><select name="GID">
+          <td width="93"><label>Groups:</label></td>
+            <td width="775"><select name="GID">
                 <c:forEach items="${Groups.rows}" var="Group">
                     <option value="${Group.GID}">${Group.gname}</option>
                 </c:forEach>
-            </select></td>
+          </select></td>
         </tr>
         <tr>
             <td><label>Exams:</label>
@@ -69,38 +88,33 @@ Hamada
         <tr>
             <td><label>Start date: </label></td>
             <td>Day:
-                <input name="sd" type="text" id="sd" size="2" maxlength="2" /> 
+                <input name="sd" type="text" size="2" maxlength="2" /> 
                 -Month:
-                <input name="sm" type="text" id="sm" size="2" maxlength="2" /> 
+                <input name="sm" type="text" size="2" maxlength="2" /> 
                 -Year:
-                <input name="sy" type="text" id="sy" size="4" maxlength="4" />            </td>
+                <input name="sy" type="text" size="4" maxlength="4" />            </td>
         </tr>
         <tr>
             <td><label>End Date:</label></td>
             <td>Day:
-            <input name="ed" type="text" id="ed" size="2" maxlength="2" />
+            <input name="ed" type="text" size="2" maxlength="2" />
             -Month:
-            <input name="em" type="text" id="em" size="2" maxlength="2" />
+            <input name="em" type="text" size="2" maxlength="2" />
             -Year:
-          <input name="ey" type="text" id="ey" size="4" maxlength="4" /></td>
+          <input name="ey" type="text"size="4" maxlength="4" /></td>
         </tr>
         <tr>
             <td><label>Period:</label></td>
-            <td><input name="period" type="text" id="period" /></td>
+            <td><input name="period" type="text" /></td>
         </tr>
-    </table>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>
-        
-        <label></label>
-        <br />
-        <br />
-        <br />
-    </p>
-    <p>
-        <input type="button" onclick="back();" value="Back" />
-        <input type="button" onclick="document.location.href='CP.jsp?action=exam&amp;subaction=list'" value="Cancel" />
-        <input type="submit" name="Submit" value="Finish" />
-    </p>
+        <tr>
+          <td>&nbsp;</td>
+          <td><input name="button" type="button" onclick="back();" value="Back" />
+            <input name="button" type="button" onclick="document.location.href='CP.jsp?action=exam&amp;subaction=list'" value="Cancel" />
+            <input type="submit" value="Finish" />
+          </td>
+        </tr>
+  </table>
+    
+  <label></label>
 </form>

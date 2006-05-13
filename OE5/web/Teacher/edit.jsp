@@ -43,8 +43,8 @@ Abbas Adel
                 <sql:query var="MXATID" sql="SELECT MAX(TID) AS TID FROM Teacher;"/>
                 <sql:update>            
                     INSERT INTO teacher 
-                    (TID, tName, Degree, Password, Birth, Email, Tell, Address)
-                    VALUES(?, ?, ?, ?, ?, ?, ?, ? )
+                    (TID, tName, Degree, Password, Birth, Email, Tell, Address, `date`)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP() )
                     <sql:param value="${MXATID.rows[0].TID+1}" />
                     <sql:param value="${param.name}" />
                     <sql:param value="${param.degree}" />

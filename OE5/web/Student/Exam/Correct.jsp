@@ -34,10 +34,51 @@ Abbas Adel
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 
-<!-- Forward and display error message if QID is not recieved --!>
-    <jsp:forward page="../CP.jsp?action=question&subaction=list" >
-        <jsp:param name="NormalMessage" 
-        value="Your exam have submitted successfully"/>
-    </jsp:forward>
+<sql:query var="Course">
+    SELECT Course.max,Course.min
+    FROM Exam, SubmitExam, Course 
+    WHERE SubmitExam.SEID = ${param.SEID} AND SubmitExam.EID = Exam.EID AND Exam.CID = Course.CID
+</sql:query>
+
+<c:set var="result" value="0" />
+<c:set var="counter" value="0" />
+<c:forEach items="${paramValues.QID}" var="Q">
+
+    <c:set var="O" value="OID[${Q}]" />
+    <sql:query var="A" maxRows="1">
+        SELECT IF(QID=? AND OID = ?,1,0) FROM Question WHERE QID=? AND OID = ?
+        <sql:param value="${Q}" />
+        <sql:param value="${param[O]}" />
+        <sql:param value="${Q}" />
+        <sql:param value="${param[O]}" />
+    </sql:query>
+    <c:set var="result" value="${result+A.rows[0]['']}" />
+    <c:set var="counter" value="${counter+1}" />
+
+</c:forEach>
+
+<c:set var="mark" value="${(result/counter)*Course.rows[0].max }" />
+<c:set var="grade" value="${(result/counter)*100 }" />
+<c:set var="grade" value="${grade >= 85?'A':grade >= 75?'B':grade >= 65?'C':grade >= 50? 'C-':'F' }" />
+
+<%--
+${result} ${counter} ${mark} ${grade}
+--%>
+<%-- auusme falirue --%>
+
+<sql:update>
+    UPDATE `Result` 
+    SET mark = ?, grade = ? 
+    WHERE SEID = ? AND SID = ?
+    <sql:param value="${mark}" />
+    <sql:param value="${grade}" />
+    <sql:param value="${param.SEID}" />    
+    <sql:param value="${User.SID}" />
+</sql:update>
+
+<jsp:forward page="../CP.jsp?action=exam&subaction=result" >
+    <jsp:param name="NormalMessage" 
+    value="Your exam have submitted successfully"/>
+</jsp:forward>
 
     

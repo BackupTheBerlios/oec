@@ -133,9 +133,17 @@ function validateQuestions(form)
 		return true;
 }
 
-function checkAll()
+function checkAll(id)
 {
-	for(var i=0; i < document.getElementsByName("CID").length; i++)
-		document.getElementsByName("CID")[i].checked = !document.getElementsByName("CID")[i].checked;
+	for(var i=0; i < document.getElementsByName(id).length; i++)
+		document.getElementsByName(id)[i].checked = !document.getElementsByName(id)[i].checked;
 }
 
+function checkOne(id, message)
+{
+    for(var i=0; i < document.getElementsByName(id).length; i++)
+        if(document.getElementsByName(id)[i].checked) 
+            return true;
+        alert(message);
+        return false;
+}

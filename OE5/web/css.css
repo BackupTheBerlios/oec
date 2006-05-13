@@ -27,7 +27,8 @@ h1{
 
 select
 {
-	width: 150px;
+	min-width:150px;
+	max-width:300px;
 }
 th{
 	background-color: #e2e2e2;

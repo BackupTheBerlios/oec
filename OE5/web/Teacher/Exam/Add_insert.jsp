@@ -34,7 +34,7 @@ Ahmed Tanahy
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <sql:query var="MAXEID" sql="SELECT MAX(EID) AS EID FROM Exam;"/>
 <sql:update >
-    INSERT INTO Exam VALUES(?,?,?,?,DEFAULT)
+    INSERT INTO Exam(EID,CID,TID,ename,EDate) VALUES(?,?,?,?,DEFAULT)
     <sql:param value="${MAXEID.rows[0].EID+1}" />
     <sql:param value="${param.CID}" />
     <sql:param value="${User.TID}" />

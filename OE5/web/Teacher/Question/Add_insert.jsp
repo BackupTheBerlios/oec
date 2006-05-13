@@ -35,6 +35,7 @@ Ahmed Tanahy
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
+
 <c:set var="countQuestions"  value="${param.countQuestions}" />
 <c:set var="countOptions"  value="${param.countOptions}" />
 
@@ -67,6 +68,8 @@ Ahmed Tanahy
         </c:forEach>
     </c:if>
 </c:forEach>
+
+
 <!-- Forward and display error message if QID is not recieved --!>
     <jsp:forward page="../CP.jsp?action=question&subaction=list" >
         <jsp:param name="NormalMessage" 

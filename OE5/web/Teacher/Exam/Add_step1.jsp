@@ -21,10 +21,11 @@ JOP FOR:
 Abbas Adel
 
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
-<form action="CP.jsp?action=exam&subaction=add&step=2" method="post" onsubmit="MM_validateForm('ename','','R','sd','','NinRange1:31','sm','','NinRange1:12','sy','','NinRange2006:2150','ed','','NinRange1:31','em','','NinRange1:30','ey','','NinRange2006:2150');return document.MM_returnValue">
+<form action="CP.jsp?action=exam&subaction=add&step=2" method="post" onsubmit="MM_validateForm('ename','','R');return document.MM_returnValue" >
     <table width="100%" cellspacing="2" cellpadding="2">
         <tr>
             <td width="135"><label>Select Course:</label>            </td>
@@ -32,21 +33,22 @@ Abbas Adel
                 <sql:query var="courses"> 
                     SELECT DISTINCT Course.cname, Course.CID FROM Course, Teach, Question 
                     WHERE  Question.CID = Course.CID AND Course.CID = Teach.CID  AND Teach.TID = ? 
-                            
                     <sql:param value="${User.TID}"/>
                 </sql:query>
+                
                 <c:forEach items="${courses.rows}" var="row">
                     <option value="${row.CID}">${row.cname}</option>
                 </c:forEach>
-            </select>            </td>
+            </select>
+            </td>
         </tr>
         <tr>
             <td><label>Exam Name: </label></td>
-            <td><input name="ename" type="text" id="ename" /></td>
+            <td><input name="ename" type="text" /></td>
         </tr>
         <tr>
             <td>&nbsp;</td>
-            <td><input type="submit" name="Submit" value="   Next   " /></td>
+            <td><input type="submit" value="   Next   " /></td>
         </tr>
     </table>
 </form>

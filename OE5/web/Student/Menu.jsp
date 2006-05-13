@@ -21,6 +21,7 @@ Abbas Adel
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <div id="nav">
     
     <li class="${param.action == 'status' || empty param.action? 'current':''}">

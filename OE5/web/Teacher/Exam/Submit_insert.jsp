@@ -36,7 +36,7 @@ Hamada
 <c:set value="${param.ey}-${param.em}-${param.ed}" var="EndDate" />
         
 <sql:update>
-    INSERT INTO `SubmitExam` VALUES(?,?,?,?,?)
+    INSERT INTO `SubmitExam` VALUES(DEFAULT, ?,?,?,?,?)
     <sql:param value="${param.EID}"/>
     <sql:param value="${param.GID}"/>
     <sql:param value="${StartDate}"/>
@@ -56,7 +56,7 @@ Hamada
         INSERT INTO `Message` VALUES (DEFAULT,?,?,?,DEFAULT,?,?)
         <sql:param value="${Student.SID}" />
         <sql:param value="exam"/>
-        <sql:param value="${User.TName} has added a new exam <b>${param.ename} in ${param.cname}</b>" />
+        <sql:param value="${User.TName} has added a new exam <b>${param.ename} for ${param.cname}</b>" />
         <sql:param value="${param.EID}"/>
         <sql:param value="student"/>
     </sql:update>

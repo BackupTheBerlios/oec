@@ -10,9 +10,23 @@
   </c:choose>
 </c:if>
 <jsp:include page="/header.jsp" />
-      <h1>Welcome</h1>
-      <p><em>Welcome to OEC</em>,</p>
-      <p>If this is your first visit, please register to enjoy our services.</p>
-      <p>Student Registration <a href="Student/register.jsp">here</a>.</p>
-      <p>Teacher Registration <a href="Teacher/register.jsp">here</a>. </p>
-<jsp:include page="/footer.jsp" />
+<h1>Welcome <em> to OEC</em></h1>
+<p>If this is your first visit, please register to enjoy our services.</p>
+<table width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td height="188" align="center"><p>&nbsp;</p>
+            <p>
+              <a href="Student/register.jsp"><img src="images/student.png" alt="Student" width="256" height="256" border="0" /></a>
+              <br />
+              Student Registration
+              <a href="Student/register.jsp">here</a>
+              .</p>
+            <p>&nbsp;</p></td>
+          <td align="center"><a href="Teacher/register.jsp"><img src="images/teacher.png" alt="Teacher" width="256" height="256" border="0" /></a>
+            <br />
+            Teacher Registration
+            <a href="Teacher/register.jsp">here</a>
+. </td>
+        </tr>
+      </table>
+      <jsp:include page="/footer.jsp" />

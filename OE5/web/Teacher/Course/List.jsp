@@ -35,7 +35,7 @@ Hamada
         <tr>
             <td align="right"><label><em><u> Filter by:</u></em>: </label>
                 <select name="Filter" onchange="MM_jumpMenu('parent',this,0)">
-                    <option value="CP.jsp?action=course&subaction=list&Filter=0" ${param.Filter==0?"selected":""}>All</option>
+                    <%-- <option value="CP.jsp?action=course&subaction=list&Filter=0" ${param.Filter==0?"selected":""}>All</option> --%>
                     <option value="CP.jsp?action=course&subaction=list&Filter=1" ${param.Filter==1?"selected":""}>Your Courses</option>
                     <option value="CP.jsp?action=course&subaction=list&Filter=2" ${param.Filter==2?"selected":""}>Other Courses</option>
                 </select>
@@ -53,7 +53,7 @@ Hamada
             <tr>
             <%-- the course according to the login data --%>
             
-            <c:if test="${param.Filter == 1}" >
+            <c:if test="${param.Filter == 1 || empty param.Filter}" >
                 <sql:query var="Courses">
                     SELECT course.CID, course.cName, teach.date ,  teach.TID FROM course,teach                 
                     WHERE teach.CID = course.CID  AND teach.TID = ? 
@@ -77,10 +77,15 @@ Hamada
             
             <c:if test="${param.Filter == 2}" >
                 <sql:query var="Courses">
-                    SELECT course.CID, course.cName, teach.date ,  teach.TID FROM course,teach                 
-                    WHERE teach.CID = course.CID 
-
+                    <%--
+                    SELECT DISTINCT course.CID, course.cName
+                    FROM course,teach                 
+                    WHERE teach.CID = course.CID
                     AND course.CID NOT IN (SELECT teach.CID FROM teach, course WHERE teach.CID=course.CID AND teach.TID = ?)
+                    --%>
+                    SELECT Course.CID, Course.cName
+                    FROM Course               
+                    WHERE course.CID NOT IN (SELECT teach.CID FROM teach WHERE teach.TID = ?)
                     <sql:param value="${User.TID}" />              
                 
                 </sql:query>
@@ -94,30 +99,30 @@ Hamada
                     </tr>
                 </c:forEach>  
             </c:if>
-            
+            <%--
             <c:if test="${param.Filter == 0 || empty param.Filter}" >
-                <sql:query var="AllCourses" sql="SELECT `course`.CID, `course`.cName FROM `course`"/>
-                <sql:query var="MyCourses" sql="SELECT `teach`.CID FROM `course` , `teach` WHERE `course`.CID = `teach`.CID AND `teach`.TID = ${User.TID}" />
-                <c:set value="1" var="Flag1"/>
-                <c:forEach items="${AllCourses.rows}" var="allcourse">
-                    <tr>
-                        <td>${allcourse.cName}</td>
-                        <td>${allcourse.date}</td>
-                        <c:forEach items="${myCourses.rows}" var="MyCourse">
-                            <c:if test="${allcourse.CID} == ${MyCourse}">
-                                <c:set value="1" var="Flaghgsdj "/>
-                            </c:if>
-                        </c:forEach>
-                        <td>
-                            <c:if test="${Flag && Flag1 == 1}">
-                                <a href="CP.jsp?action=course&subaction=delete&CID=${allcourse.CID}">Delete</a>                              
-                            </c:if>
-                            <a href="CP.jsp?action=course&subaction=add&CID=${allcourse.CID}">Add</a>
-                        </td>
-                    </tr>
-                </c:forEach>  
+            <sql:query var="AllCourses" sql="SELECT `course`.CID, `course`.cName FROM `course`"/>
+            <sql:query var="MyCourses" sql="SELECT `teach`.CID FROM `course` , `teach` WHERE `course`.CID = `teach`.CID AND `teach`.TID = ${User.TID}" />
+            <c:set value="1" var="Flag1"/>
+            <c:forEach items="${AllCourses.rows}" var="allcourse">
+            <tr>
+            <td>${allcourse.cName}</td>
+            <td>${allcourse.date}</td>
+            <c:forEach items="${myCourses.rows}" var="MyCourse">
+            <c:if test="${allcourse.CID} == ${MyCourse}">
+            <c:set value="1" var="Flaghgsdj "/>
             </c:if>
-            
+            </c:forEach>
+            <td>
+            <c:if test="${Flag && Flag1 == 1}">
+            <a href="CP.jsp?action=course&subaction=delete&CID=${allcourse.CID}">Delete</a>                              
+            </c:if>
+            <a href="CP.jsp?action=course&subaction=add&CID=${allcourse.CID}">Add</a>
+            </td>
+            </tr>
+            </c:forEach>  
+            </c:if>
+            --%>
         </table>
     </table>
 </form>

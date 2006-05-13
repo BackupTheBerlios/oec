@@ -50,7 +50,7 @@ Abbas Adel
                   <td>Password:</td>
                   <td>
                   <input name="password" type="text" id="password" size="40" maxlength="12" />
-                  <</td>
+                  </td>
               </tr>
               <tr>
                   <td> Birth Date:</td>

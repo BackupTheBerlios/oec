@@ -25,7 +25,7 @@ Abbas Adel
 
     <ul>
         <li class="${param.subaction == 'list' || empty param.subaction? 'current':''}">
-            <a href="CP.jsp?action=group&subaction=list&FTID=0" >List</a>
+            <a href="CP.jsp?action=group&subaction=list" >List</a>
         </li>
         <li class="${param.subaction == 'add'? 'current':''}">
             <a href="CP.jsp?action=group&subaction=add">Add</a>

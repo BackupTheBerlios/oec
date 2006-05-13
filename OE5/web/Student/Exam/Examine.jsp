@@ -27,29 +27,38 @@ TO DO:
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 <c:set var="subsectionTitle" value="Examine" scope="request"/>
-<c:if test="${empty param.EID}" >
+
+<c:if test="${empty param.SEID}" >
     <c:set var="ErrorMessage" value='Please press on <b>"Examine"</b> link in the <b>\"Exam List\"</b>' scope="session" />
     <jsp:forward page="../CP.jsp?action=exam&subaction=list" />
 </c:if>
+<%-- auusme falirue --%>
+<sql:update>
+    INSERT INTO `Result` VALUES(?,?,"F",0,DEFAULT)
+    <sql:param value="${User.SID}" />
+    <sql:param value="${param.SEID}" />    
+</sql:update>
 
+
+<c:set var="ErrorMessage" scope="session" value="${ErrorMessage}" />
 <sql:query var="Exam">
-    SELECT exam.ename, course.cname, teacher.tname, teacher.degree
-    FROM Teacher, course, exam
-    WHERE teacher.TID = exam.TID AND exam.CID = Course.CID AND EID = ${param.EID}
+    SELECT Exam.ename, Course.cname, Teacher.tname, Teacher.degree
+    FROM Teacher, Course, Exam, SubmitExam
+    WHERE Teacher.TID = Exam.TID AND Exam.CID = Course.CID AND Exam.EID = SubmitExam.EID AND SubmitExam.SEID = ${param.SEID}
 </sql:query>
 
-<form  method="post" action="CP.jsp?action=exam&subaction=correct" id="exam">
+<form  method="post" action="CP.jsp?action=exam&subaction=correct&SEID=${param.SEID}" id="exam">
     <table width="100%" cellspacing="2" cellpadding="2" class="list">
         <tr>
             <th>${Exam.rows[0].ename} - ${Exam.rows[0].cname} - <i>by ${Exam.rows[0].degree}  ${Exam.rows[0].tname} </i>
-                <input name="EID" type="hidden" id="EID" value="EID" />
+                <input name="SEID" type="hidden" value="SEID" />
                 
             </th>
         </tr>
         <sql:query var="Questions">
             SELECT question.QID, question.question
-            FROM Question, takeExam
-            WHERE takeExam.QID = Question.QID AND takeExam.EID = ${param.EID}
+            FROM Question, TakeExam, SubmitExam
+            WHERE TakeExam.QID = Question.QID AND TakeExam.EID = SubmitExam.EID AND SubmitExam.SEID = ${param.SEID}
         </sql:query>
     
         <c:forEach items="${Questions.rows}" var="Question" >
@@ -59,9 +68,8 @@ TO DO:
                     <p><strong><em>Q: </em>${Question.question}</strong></p>
                     
                     <sql:query var="Options" sql="SELECT oname, OID FROM `Option` WHERE QID = ${Question.QID}"/>
-                    
-                    <c:forEach items="${Options.rows}" var="Option">
-                        <input type="hidden" name="QID" value="${Question.QID}" > 
+                    <input type="hidden" name="QID" value="${Question.QID}" >
+                    <c:forEach items="${Options.rows}" var="Option">                         
                         <p><input name="OID[${Question.QID}]" type="radio" value="${Option.OID}" />${Option.oname}</p>
                     </c:forEach>
                     

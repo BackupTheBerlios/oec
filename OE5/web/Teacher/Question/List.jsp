@@ -42,7 +42,27 @@ Islam
         <td align="right">
         <form method="post" action="CP.jsp?action=question&subaction=list">
             <label> <em><u>Filter by:</u></em> Teacher: </label>
-            <sql:query var="Teachers" sql="SELECT DISTINCT teacher.TID,tname FROM teacher,question WHERE question.TID = teacher.TID" />
+            <sql:query var="Teachers">
+                <%--
+                SELECT Teacher.TID, Teacher.tname 
+                FROM Teacher, Question, Teach 
+                WHERE Question.TID = Teacher.TID AND Teacher.TID = Teach.TID AND Question.CID = Teach.TID
+                --%>
+                SELECT Teacher.TID, Teacher.tname 
+                FROM Teacher, Question, Teach 
+                WHERE Question.TID = Teacher.TID AND Teacher.TID = Teach.TID AND Question.CID IN (
+                SELECT Teach.CID FROM Teach WHERE Teach.TID = ?)
+                GROUP BY Teacher.TID
+                <sql:param value="${User.TID}" />
+            </sql:query>
+            
+            <%-- forward if no question --%>
+            <c:if test="${Teachers.rowCount == 0}" >
+                <jsp:forward page="../CP.jsp?action=question&subaction=add" >
+                     <jsp:param name="ErrorMessage"  value="Please insert questions first"/>
+                </jsp:forward>
+            </c:if>
+            
             <select name="FTID">
                 <option value="0">All</option>
                 <c:forEach items="${Teachers.rows}" var="MyTeacher">
@@ -51,8 +71,8 @@ Islam
             </select>
             <label>Course:</label>
             <sql:query var="Courses">
-                SELECT DISTINCT course.CID,cname FROM course, teach, question
-                WHERE teach.CID = course.CID AND teach.TID = ? AND course.CID = question.CID
+                SELECT DISTINCT Course.CID, Course.cname FROM Course, Teach, Question
+                WHERE  Question.CID = Course.CID AND Course.CID = Teach.CID AND Teach.TID = ? 
                 <sql:param value="${User.TID}" />
             </sql:query>
             <select name="FCID">
@@ -67,36 +87,36 @@ Islam
     <tr>
         <td><table width="100%" cellpadding="2" cellspacing="2"  class="list">
             <tr>
-                <th width="24%">Question</th>
-                <th width="13%">Correct Answer </th>
-                <th width="15%">Course</th>
-                <th width="27%">Teacher</th>
-                <th width="13%">Date</th>
-                <th width="8%">Action</th>
+                <th width="21%">Question</th>
+                <th width="26%">Correct Answer </th>
+                <th width="14%">Course</th>
+                <th width="14%">Teacher</th>
+                <th width="12%">Date</th>
+                <th width="50">Action</th>
             </tr>
             <sql:query var="questions"> 
-                SELECT question.QID, question.question, `option`.oname, course.cname, teacher.tname, question.`date`, question.TID ,`course`.CID
-                FROM `teacher`, `question`, `option`, `teach`, `course` 
+                SELECT Question.QID, Question.question, `Option`.oname, Course.cname, Teacher.tname, Question.`date`, Question.TID ,`Course`.CID
+                FROM `Teacher`, `Question`, `Option`, `Teach`, `Course` 
                 WHERE 
                 <c:if test="${!empty param.FTID && param.FTID != 0}" >
-                    `teacher`.TID = ? AND
+                    `Teacher`.TID = ? AND
                     <sql:param value="${empty param.FTID?User.TID:param.FTID}" />
                 </c:if>
                 <c:if test="${!empty param.FCID && param.FCID != 0}" >
-                    `course`.CID = ? AND
+                    `Course`.CID = ? AND
                     <sql:param value="${param.FCID}" />
                 </c:if>
-                `teacher`.TID = `question`.TID AND`question`.QID = `option`.QID
-                AND`question`.OID = `option`.OID AND `teacher`.TID = `teach`.TID AND `teach`.CID = `course`.CID 
-                AND `question`.CID = `course`.CID
-                
+                `Teacher`.TID = `Question`.TID AND `Question`.QID = `Option`.QID
+                AND`Question`.OID = `Option`.OID AND `Teacher`.TID = `Teach`.TID AND `Teach`.CID = `Course`.CID 
+                AND `Question`.CID = `Course`.CID AND Course.CID IN (SELECT Teach.CID FROM Teach WHERE Teach.TID = ?)
+                <sql:param value="${User.TID}" />
             </sql:query>
             <c:forEach items="${questions.rows}"  var="question">
                 <tr>
                     <td>${question.question}</td>
                     <td>${question.oname}</td>
-                    <td>${question.cname}</td>
-                    <td>${question.tname}</td>
+                  <td nowrap="nowrap">${question.cname}</td>
+                  <td nowrap="nowrap">${question.tname}</td>
                     <td nowrap="nowrap">${question.date}</td>
                     <td nowrap="nowrap">
                         <c:choose>

@@ -26,18 +26,20 @@ Abbas Adel
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<sql:query var= "Students" sql="SELECT SID , Sname , `date` FROM student" />
-<form method="post" action="CP.jsp?action=group&subaction=add&step=3">
+
+
+<sql:query var= "Students" sql="SELECT SID , sname , `date` FROM Student" />
+<form action="CP.jsp?action=group&subaction=add&step=3" method="post" onsubmit="MM_validateForm('gname','','R');return checkOne('SID', 'Please Select at least one student') && document.MM_returnValue">
   <table width="100%" cellspacing="2" cellpadding="2">
     <tr>
       <td><label>Group Name:</label>
-        <input name="gname" type="text" id="gname" /></td>
+        <input name="gname" type="text" /></td>
     </tr>
     <tr>
       <td>
 	  <table width="100%" cellspacing="2" cellpadding="2" class="list">
           <tr>
-            <th width="10"><input type="checkbox" name="checkbox" value="checkbox" /></th>
+            <th width="10"><input type="checkbox" name="checkbox" value="checkbox"  onchange="checkAll('SID')"/></th>
             <th width="49%">Student Name </th>
             <th width="48%">Registration Date </th>
           </tr>

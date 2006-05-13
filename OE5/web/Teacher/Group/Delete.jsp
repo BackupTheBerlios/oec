@@ -48,9 +48,9 @@ Islam Negm
     WHERE gid=?
     <sql:param value="${param.GID}"/>    
 </sql:update>
-<c:if test="${empty param.QID}" >
+
+
     <jsp:forward page="../CP.jsp?action=group&subaction=list" >
-        <jsp:param name="ErrorMessage" 
-        value="Please press on <b>'Delete'</b> link in the <b>\"Question List\"</b>"/>
+        <jsp:param name="NormalMessage" 
+        value="Deleted Successfully"/>
     </jsp:forward>
-</c:if>

@@ -32,54 +32,38 @@ Hamada
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 <c:set var="subsectionTitle" value="Edit Your Information" scope="request"/>
+<sql:query var="Student" sql="SELECT * FROM `Student` WHERE SID =${User.SID}"/>
 <form action="edit.jsp" method="post" onsubmit="MM_validateForm('name','','R','password','','R','address','','R','tell','','RisNum','email','','RisEmail');return document.MM_returnValue">
     <table width="100%" border="0" cellpadding="2" cellspacing="2">
         <tr>
             <td>Full name: </td>
-            <td><input name="name" type="text" size="40" maxlength="20" /></td>
+            <td><input name="name" type="text" value="${Student.rows[0].sname}" size="40" maxlength="20" /></td>
         </tr>
         <tr>
             <td width="17%">Password:</td>
-            <td width="83%"><input name="password" type="text" size="40" maxlength="12" /></td>
+            <td width="83%"><input name="password" value="${Student.rows[0].password}"type="text" size="40" maxlength="12" /></td>
         </tr>
         <tr>
             <td> Birth Date: </td>
-            <td> Year: 
-              <input name="textfield" type="text" size="8" maxlength="4" />
-              - Month:
-                
-              <input name="textfield2" type="text" size="6" maxlength="2" />
-              - Day:
-              <input name="textfield3" type="text" size="6" maxlength="2" />
+            <td><input name="birth" type="text" value="${Student.rows[0].birth}"  size="40" maxlength="" />
             </td>
         </tr>
         <td> Address: </td>
-        <td><input name="address" type="text"  size="40" maxlength="40" />
+        <td><input name="address" type="text" value="${Student.rows[0].address}" size="40" maxlength="40" />
         </td>
         </tr>
         <tr>
             <td> Tell Number: </td>
-            <td><input name="tell" type="text"size="30" maxlength="10" />
+            <td><input name="tell" value="${Student.rows[0].tell}" type="text"size="30" maxlength="10" />
             </td>
         </tr>
         <tr>
             <td> Email: </td>
-            <td><input name="email" type="text"size="40" maxlength="20" />
+            <td><input name="email" type="text" value="${Student.rows[0].email}" size="40" maxlength="20" />
             </td>
-        </tr>
-        <tr>
-            <td> Degree: </td>
-            <td><select name="degree">
-                <option value="4">Professor</option>
-                <option value="3">Lecturer</option>
-                <option value="2">Assistant Lecturer</option>
-                <option value="1" selected="selected">Demonstrator</option>
-            </select>
-            <input name="action" type="hidden" value="update" /></td>
-        </tr>
         <tr>
             <td>&nbsp;</td>
-            <td><input type="submit"/>
+            <td><input type="submit"/><input name="action" type="hidden" value="update" />
                 <input type="reset"/>
             </td>
         </tr>

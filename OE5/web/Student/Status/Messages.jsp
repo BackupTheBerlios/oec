@@ -32,10 +32,10 @@ Abbas Adel
 
 <sql:query var="NewMessages">
     SELECT Message.message, Message.ID, Message.MID, Message.Type, Message.mdate 
-    FROM Message, Teacher
-    WHERE Message.UID = Teacher.TID AND Message.User = 'teacher' AND Message.UID = ?
+    FROM Message, Student
+    WHERE Message.UID = Student.SID AND Message.User = 'student' AND Message.UID = ?
     AND Message.mdate > ?
-    <sql:param value="${User.TID}" />
+    <sql:param value="${User.SID}" />
     <sql:param value="${User.login}" />
 </sql:query>
 
@@ -58,10 +58,10 @@ Abbas Adel
 
 <sql:query var="OldMessages">
     SELECT Message.message, Message.ID, Message.MID, Message.Type, Message.mdate 
-    FROM Message, Teacher
-    WHERE Message.UID = Teacher.TID AND Message.User = 'teacher' AND Message.UID = ?
+    FROM Message, Student
+    WHERE Message.UID = Student.SID AND Message.User = 'student' AND Message.UID = ?
     AND Message.mdate <= ?
-    <sql:param value="${User.TID}" />
+    <sql:param value="${User.SID}" />
     <sql:param value="${User.login}" />
 </sql:query>
 
