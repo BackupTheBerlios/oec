@@ -36,6 +36,13 @@ Abbas Adel
                     <sql:param value="${User.TID}"/>
                 </sql:query>
                 
+                <c:if test="${courses.rowCount == 0}">
+                    <jsp:forward page="../CP.jsp?action=question&subaction=add" >
+                        <jsp:param name="ErrorMessage" 
+                        value="Please try to teach a course OR add some question to your courses."/>
+                    </jsp:forward>
+                </c:if>
+                
                 <c:forEach items="${courses.rows}" var="row">
                     <option value="${row.CID}">${row.cname}</option>
                 </c:forEach>
