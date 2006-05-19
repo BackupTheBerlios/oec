@@ -14,14 +14,14 @@
         <th width="17%">Action</th>
     </tr>
     <sql:query var="Exams">
-        SELECT SubmitExam.SEID, Exam.ename, Course.cname, Teacher.tname, submitExam.startdate, SubmitExam.enddate, SubmitExam.period,
-        IF(CURRENT_DATE()<= SubmitExam.enddate, 'Examine','Not Yet')
-        FROM Exam, `Assign`,  SubmitExam, Course,  Teacher
-        WHERE  `assign`.GID = submitExam.GID
-        AND `submitExam`.EID = exam.EID AND exam.CID = course.CID AND exam.TID = teacher.TID 
+        SELECT SubmitExam.SEID, `Exam`.ename, `Course`.cname, `Teacher`.tname, `SubmitExam`.startdate, `SubmitExam`.enddate, `SubmitExam`.period,
+        IF(CURRENT_DATE()<= `SubmitExam`.enddate, 'Examine','Not Yet')
+        FROM Exam, `Assign`, `SubmitExam` , `Course`,  `Teacher`
+        WHERE  `Assign`.GID = `SubmitExam`.GID
+        AND `SubmitExam`.EID = `Exam`.EID AND `Exam`.CID = `Course`.CID AND `Exam`.TID = `Teacher`.TID 
         AND `Assign`.SID = ${User.SID}
-        AND CURRENT_DATE() >= SubmitExam.startdate
-        AND SubmitExam.SEID NOT IN (SELECT SEID FROM `Result` WHERE SID = ${User.SID})
+        AND CURRENT_DATE() >= `SubmitExam`.startdate
+        AND `SubmitExam`.SEID NOT IN (SELECT SEID FROM `Result` WHERE SID = ${User.SID})
                 
     </sql:query>
 
