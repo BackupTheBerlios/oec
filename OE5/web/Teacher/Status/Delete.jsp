@@ -27,7 +27,7 @@ Tanahy
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <sql:update>
-    DELETE FROM Message WHERE message.MID = ?
+    DELETE FROM Message WHERE Message.MID = ?
     <sql:param value="${param.MID}"/>
 </sql:update>
 

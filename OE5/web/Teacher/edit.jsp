@@ -42,8 +42,8 @@ Abbas Adel
             <c:when test="${param.action == 'insert'}">
                 <sql:query var="MXATID" sql="SELECT MAX(TID) AS TID FROM Teacher;"/>
                 <sql:update>            
-                    INSERT INTO teacher 
-                    (TID, tName, Degree, Password, Birth, Email, Tell, Address, `date`)
+                    INSERT INTO Teacher 
+                    (TID, tname, degree, password, birth, email, tell, address, `date`)
                     VALUES(?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP() )
                     <sql:param value="${MXATID.rows[0].TID+1}" />
                     <sql:param value="${param.name}" />
@@ -68,12 +68,12 @@ Abbas Adel
                 <sql:update>
                     UPDATE Teacher
                     SET Password = ?, 
-                    tName = ?, 
-                    Degree = ?,
-                    Birth = ?,
-                    Email = ?, 
-                    Tell = ?,
-                    Address = ?
+                    tname = ?, 
+                    degree = ?,
+                    birth = ?,
+                    email = ?, 
+                    tell = ?,
+                    address = ?
                     WHERE TID = ?
                     <sql:param value="${param.password}" />
                     <sql:param value="${param.name}" />

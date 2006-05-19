@@ -41,22 +41,22 @@ Islam Negm
 </c:forEach>
 
  <sql:update>
-     UPDATE `group` set `group`.GName=?   WHERE `group`.GID=?
+     UPDATE `Group` SET `Group`.GName=?   WHERE `Group`.GID=?
      <sql:param value="${param.gname}" />
      <sql:param value="${param.GID}"/>   
  </sql:update>
 
 <c:forEach items="${paramValues.SID}" var="Student">
     <sql:update>       
-        DELETE FROM `assign`
-        WHERE `assign`.GID=?
+        DELETE FROM `Assign`
+        WHERE `Assign`.GID=?
         <sql:param value="${param.GID}"/>    
     </sql:update>
 </c:forEach>
 <sql:query var="MAXGID" sql="SELECT MAX(GID) AS GID FROM `group`"/>
 <c:forEach items="${paramValues.SID}" var="Student">
     <sql:update>
-        INSERT INTO `assign` VALUES(?,?,DEFAULT)
+        INSERT INTO `Assign` VALUES(?,?,DEFAULT)
         <sql:param value="${param.GID}" />
         <sql:param value="${Student}" />
     </sql:update>                      

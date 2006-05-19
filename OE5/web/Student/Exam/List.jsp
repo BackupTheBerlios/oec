@@ -14,24 +14,24 @@
         <th width="17%">Action</th>
     </tr>
     <sql:query var="Exams">
-        SELECT SubmitExam.SEID, Exam.ename, Course.cname, Teacher.tname, submitExam.startDate, SubmitExam.EndDate, SubmitExam.period,
-        IF(CURRENT_DATE()<= submitExam.endDate, 'Examine','Not Yet')
+        SELECT SubmitExam.SEID, Exam.ename, Course.cname, Teacher.tname, submitExam.startdate, SubmitExam.enddate, SubmitExam.period,
+        IF(CURRENT_DATE()<= SubmitExam.enddate, 'Examine','Not Yet')
         FROM Exam, `Assign`,  SubmitExam, Course,  Teacher
         WHERE  `assign`.GID = submitExam.GID
         AND `submitExam`.EID = exam.EID AND exam.CID = course.CID AND exam.TID = teacher.TID 
         AND `Assign`.SID = ${User.SID}
-        AND CURRENT_DATE() >= submitExam.startDate
+        AND CURRENT_DATE() >= SubmitExam.startdate
         AND SubmitExam.SEID NOT IN (SELECT SEID FROM `Result` WHERE SID = ${User.SID})
                 
     </sql:query>
 
     <c:forEach items="${Exams.rows}" var="Exam">
         <tr>
-            <td>${Exam.EName}</td>
-            <td>${Exam.CName}</td>
-            <td>${Exam.TName}</td>
-            <td align="center" nowrap="nowrap">${Exam.startDate}</td>
-            <td align="center" nowrap="nowrap">${Exam.endDate}</td>
+            <td>${Exam.ename}</td>
+            <td>${Exam.cname}</td>
+            <td>${Exam.tname}</td>
+            <td align="center" nowrap="nowrap">${Exam.startdate}</td>
+            <td align="center" nowrap="nowrap">${Exam.enddate}</td>
             <td align="center" nowrap="nowrap">${Exam.period} Minutes</td>
             <td nowrap="nowrap">
             <c:if test="${Exam['']=='Examine'}">

@@ -41,14 +41,14 @@ Hamada
 <c:set var="subsectionTitle" value="Delete Question" scope="request"/>
 
 <sql:update var = "DeltedOptions">
-    DELETE FROM `option`
-    WHERE `option`.QID = ?
+    DELETE FROM `Option`
+    WHERE `Option`.QID = ?
     <sql:param value="${param.QID}" />
 </sql:update>
 
 <sql:update var="Deletedquestion " >
-    DELETE FROM `question`
-    WHERE `question`.QID = ?
+    DELETE FROM `Question`
+    WHERE `Question`.QID = ?
     <sql:param value="${param.QID}" />
 </sql:update>
 

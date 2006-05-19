@@ -32,7 +32,7 @@ Hamada
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 <c:set var="subsectionTitle" value="Edit Your Information" scope="request"/>
-<sql:query var="TeacherData" sql="SELECT * FROM `teacher` WHERE `teacher`.TID =${User.TID}"/>
+<sql:query var="TeacherData" sql="SELECT * FROM `Teacher` WHERE `Teacher`.TID =${User.TID}"/>
 <form action="edit.jsp" method="post" onsubmit="MM_validateForm('name','','R','password','','R','address','','R','tell','','RisNum','email','','RisEmail');return document.MM_returnValue">
     <table width="100%" border="0" cellpadding="2" cellspacing="2">
         <tr>

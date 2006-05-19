@@ -37,7 +37,7 @@ Hamada
 
 <form action="CP.jsp?action=exam&subaction=submit_insert"  method="post" onsubmit="MM_validateForm('sd','','RinRange1:31','sm','','RinRange1:12','sy','','RinRange2006:2015','ed','','RinRange1:31','em','','RinRange1:12','ey','','RinRange2006:2015','period','','RisNum');return document.MM_returnValue">
     <sql:query var="Groups">
-        SELECT `group`.GID ,`group`.gname FROM `group` WHERE `group`.TID =?
+        SELECT `Group`.GID ,`Group`.gname FROM `Group` WHERE `Group`.TID =?
         <sql:param value="${User.TID}"/>
     </sql:query>
     <%-- no group found --%>
@@ -49,9 +49,9 @@ Hamada
     </c:if>
     
     <sql:query var="Exams">
-        SELECT `exam`.EID ,`exam`.ename , `course`.cname
-        FROM `exam` , `course`
-        WHERE `exam`.TID = ?  AND `course`.CID = `exam`.CID
+        SELECT `Exam`.EID ,`Exam`.ename , `Course`.cname
+        FROM `Exam` , `Course`
+        WHERE `Exam`.TID = ?  AND `Course`.CID = `Exam`.CID
         <sql:param value="${User.TID}"/>
     </sql:query>
     

@@ -17,8 +17,8 @@
               </select>
               <label>Course:</label>
               <sql:query var="Courses">
-                  SELECT DISTINCT course.CID,cname FROM course, teach, exam
-                  WHERE teach.CID = course.CID AND teach.TID = ? AND exam.CID = course.CID
+                  SELECT DISTINCT Course.CID,cname FROM Course, Teach, Exam
+                  WHERE Teach.CID = Course.CID AND Teach.TID = ? AND Exam.CID = Course.CID
                   <sql:param value="${User.TID}" />
               </sql:query>
               <select name="FCID">
@@ -41,30 +41,30 @@
                       <th width="17%">Action</th>
                   </tr>
                   <sql:query var="TeacherExams">
-                      SELECT `Exam`.CID ,Exam.EName , Course.CName , Teacher.TName ,Exam.EDate ,
+                      SELECT `Exam`.CID ,Exam.ename , Course.cname , Teacher.tname ,Exam.edate ,
                       Exam.TID,Exam.EID
-                      FROM `teacher` , `exam` , `course` , `teach`
+                      FROM `Teacher` , `Exam` , `Course` , `Teach`
                       WHERE 
                       <c:if test="${!empty param.FTID && param.FTID != 0}" >
-                          `teacher`.TID = ? AND
+                          `Teacher`.TID = ? AND
                           <sql:param value="${empty param.FTID?User.TID:param.FTID}" />
                       </c:if>
                       <c:if test="${!empty param.FCID && param.FCID != 0}" >
-                          `course`.CID = ? AND
+                          `Course`.CID = ? AND
                           <sql:param value="${param.FCID}" />
                       </c:if>
-                      exam.TID = teacher.TID
-                      AND exam.CID = course.CID
-                      AND teach.CID = course.CID
-                      AND teach.TID = teacher.TID 
-                      ORDER BY course.Cname, Exam.Edate
+                      Exam.TID = Teacher.TID
+                      AND Exam.CID = Course.CID
+                      AND Teach.CID = Course.CID
+                      AND Teach.TID = Teacher.TID 
+                      ORDER BY Course.cname, Exam.edate
                   </sql:query>
                   <c:forEach items="${TeacherExams.rows}" var ="TeacherExam">
                       <tr>
-                          <td>${TeacherExam.EName}</td>
-                          <td>${TeacherExam.CName}</td>
-                          <td>${TeacherExam.TName}</td>
-                          <td nowrap="nowrap">${TeacherExam.EDate}</td>
+                          <td>${TeacherExam.ename}</td>
+                          <td>${TeacherExam.ename}</td>
+                          <td>${TeacherExam.ename}</td>
+                          <td nowrap="nowrap">${TeacherExam.edate}</td>
                           <td nowrap="nowrap">
                               <c:choose>
                                   <c:when test="${TeacherExam.TID == User.TID}">

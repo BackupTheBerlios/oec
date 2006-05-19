@@ -44,11 +44,11 @@ ${row}
 </c:forEach>--%>
  <form method="post" action="CP.jsp?action=exam&subaction=edit_update">
      <sql:query var="myExams" >
-         SELECT `exam`.EID , `exam`.ename , `question`.QID , `question`.question 
-         FROM `question`  , `exam` ,`takeexam` 
-         WHERE `takeexam`.EID = `exam`.EID
-         AND `takeexam`.QID = `question`.QID
-         AND `exam`.EID = ?
+         SELECT `Exam`.EID , `Exam`.ename , `Question`.QID , `Question`.question 
+         FROM `Question`  , `Exam` ,`TakeExam` 
+         WHERE `TakeExam`.EID = `Exam`.EID
+         AND `TakeExam`.QID = `Question`.QID
+         AND `Exam`.EID = ?
          <sql:param value="${param.EID}"/>
      </sql:query>
      <input type="hidden" name="CID" value="${param.CID}">
@@ -76,14 +76,14 @@ ${row}
              </tr>
          </c:forEach>
          <sql:query var="notMyExams" >
-             SELECT question.QID, question.question
-             FROM question, course
-             WHERE question.CID = course.CID 
-             AND course.CID = ?
-             AND question.QID NOT IN (
-             SELECT takeexam.QID 
-             FROM takeexam
-             WHERE takeexam.EID = ?)
+             SELECT Question.QID, Question.question
+             FROM Question, Course
+             WHERE Question.CID = Course.CID 
+             AND Course.CID = ?
+             AND Question.QID NOT IN (
+             SELECT TakeExam.QID 
+             FROM TakeExam
+             WHERE TakeExam.EID = ?)
              <sql:param value="${param.CID}"/>
              <sql:param value="${param.EID}"/>
          </sql:query>

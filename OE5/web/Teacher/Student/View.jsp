@@ -36,8 +36,8 @@ Hamada
 <c:set var="subsectionTitle" value="View Student Information" scope="request"/>
 
 <sql:query var="myStudent">
-    SELECT SName, Email, Address, `date`
-    FROM student
+    SELECT sname, email, address, `date`
+    FROM Student
     WHERE SID=?
     <sql:param value="${param.SID}"/>   
 </sql:query>
@@ -61,12 +61,12 @@ Hamada
                     <th scope="col">Mark</th>
                 </tr>
                 <sql:query var="Exams">
-                    SELECT exam.EName, course.CName,exam.EDate,`result`.Grade,`result`.Mark
-                    FROM exam,course,`result`, SubmitExam
-                    WHERE Course.CID = Exam.CID AND Exam.EID = SubmitExam.EID AND SubmitExam.SEID = `result`.SEID
-                    AND exam.TID=?
+                    SELECT Exam.ename, Course.cname,Exam.edate,`Result`.grade,`Result`.mark
+                    FROM Exam,Course,`Result`, SubmitExam
+                    WHERE Course.CID = Exam.CID AND Exam.EID = SubmitExam.EID AND SubmitExam.SEID = `Result`.SEID
+                    AND Exam.TID=?
                     <sql:param value="${User.TID}" />
-                    And `result`.SID=?
+                    And `Result`.SID=?
                     <sql:param value="${param.SID}"/>       
                 </sql:query>    
                 <c:forEach items="${Exams.rows}" var="exam" >

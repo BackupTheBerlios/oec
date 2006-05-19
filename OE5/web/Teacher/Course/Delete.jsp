@@ -42,7 +42,7 @@ Hamada
 <!-- Forward and display error message if CID is not recieved --!>
 
 <sql:update>
-    DELETE FROM teach
+    DELETE FROM Teach
     WHERE TID=? AND CID=?
    <sql:param value="${User.TID}"/> 
    <sql:param value="${param.CID}"/>

@@ -39,13 +39,13 @@ Abbas Adel
     <input type="hidden" name="CID" value="${param.CID}">
     <input type="hidden" name="ename" value="${param.ename}">               
     <sql:query var="questions" >
-        SELECT question.QID, question.question
-        FROM `teacher`, `question`, `teach`, `course` 
-        WHERE `course`.CID = ?
-        AND `teacher`.TID = `question`.TID
-        AND `teacher`.TID = `teach`.TID
-        AND `teach`.CID = `course`.CID 
-        AND `question`.CID = `course`.CID
+        SELECT Question.QID, Question.question
+        FROM `Teacher`, `Question`, `Teach`, `Course` 
+        WHERE `Course`.CID = ?
+        AND `Teacher`.TID = `Question`.TID
+        AND `Teacher`.TID = `Teach`.TID
+        AND `Teach`.CID = `Course`.CID 
+        AND `Question`.CID = `Course`.CID
         
         <sql:param value="${param.CID}"/>
     </sql:query>

@@ -38,14 +38,14 @@ Islam Negm
 
 <%--DELETING THE QUESTION  DATA FROM THE ASSIGN TABLE--%>
 <sql:update>
-    DELETE FROM `assign`
-    WHERE `assign`.gid=?
+    DELETE FROM `Assign`
+    WHERE `Assign`.GID=?
     <sql:param value="${param.GID}"/>    
 </sql:update>
 <%--DELETING THE QUESTION  DATA FROM THE GROUP TABLE--%>
 <sql:update>
-    DELETE FROM `group`
-    WHERE gid=?
+    DELETE FROM `Group`
+    WHERE GID=?
     <sql:param value="${param.GID}"/>    
 </sql:update>
 

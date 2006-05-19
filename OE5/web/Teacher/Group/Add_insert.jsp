@@ -34,7 +34,7 @@ Ahmed Tanahy
 <sql:query var="MAXGID" sql="SELECT MAX(GID) AS GID FROM `group`"/>
         
         <sql:update>
-            INSERT INTO `group` VALUES(?, ?, ?,DEFAULT)
+            INSERT INTO `Group` VALUES(?, ?, ?,DEFAULT)
             <sql:param value="${MAXGID.rows[0].GID+1}" />
             <sql:param value="${User.TID}" />
             <sql:param value="${param.gname}" />    
@@ -42,7 +42,7 @@ Ahmed Tanahy
     
         <c:forEach items="${paramValues.SID}" var="Student">
                 <sql:update>
-                    INSERT INTO `assign` VALUES(?,?,DEFAULT)
+                    INSERT INTO `Assign` VALUES(?,?,DEFAULT)
                     <sql:param value="${MAXGID.rows[0].GID+1}" />
                     <sql:param value="${Student}" />
                 </sql:update>                      

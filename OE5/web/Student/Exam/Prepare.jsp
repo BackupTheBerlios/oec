@@ -31,7 +31,7 @@
         INSERT INTO `Message` VALUES (DEFAULT,?,?,?,DEFAULT,?,?)
         <sql:param value="${Teacher.TID}" />
         <sql:param value="exam"/>
-        <sql:param value="${User.SName} has preformed exam <b>${Teacher.ename}</b>" />
+        <sql:param value="${User.sname} has preformed exam <b>${Teacher.ename}</b>" />
         <sql:param value="${param.SEID}"/>
         <sql:param value="teacher"/>
     </sql:update>

@@ -57,24 +57,24 @@ Hamada
             <sql:query var="Courses">
                 <c:choose >
                     <c:when test="${param.Filter == 1}" >
-                        SELECT course.CID, course.cName, teach.date ,  teach.TID FROM course,teach                 
-                        WHERE teach.CID = course.CID  AND teach.TID = ?                     
+                        SELECT Course.CID, Course.cname, Teach.date ,  Teach.TID FROM Course,Teach                 
+                        WHERE Teach.CID = Course.CID  AND Teach.TID = ?                     
                         <sql:param value="${User.TID}" />
                     </c:when>
                     <c:when test="${param.Filter == 2}" >
-                        SELECT Course.CID, Course.cName
+                        SELECT Course.CID, Course.cname
                         FROM Course               
-                        WHERE course.CID NOT IN (SELECT teach.CID FROM teach WHERE teach.TID = ?)
+                        WHERE course.CID NOT IN (SELECT Teach.CID FROM Teach WHERE Teach.TID = ?)
                     <sql:param value="${User.TID}" />
                     </c:when>
                     <c:otherwise>
-                        SELECT course.CID, course.cName, teach.date ,  teach.TID FROM course,teach                 
-                        WHERE teach.CID = course.CID  AND teach.TID = ? 
+                        SELECT Course.CID, Course.cname, Teach.date ,  Teach.TID FROM Course,Teach                 
+                        WHERE Teach.CID = Course.CID  AND Teach.TID = ? 
                         <sql:param value="${User.TID}" />
                         UNION
-                        SELECT Course.CID, Course.cName, null, null
+                        SELECT Course.CID, Course.cname, null, null
                         FROM Course               
-                        WHERE course.CID NOT IN (SELECT teach.CID FROM teach WHERE teach.TID = ?)
+                        WHERE Course.CID NOT IN (SELECT Teach.CID FROM Teach WHERE Teach.TID = ?)
                         <sql:param value="${User.TID}" />
                     </c:otherwise>
                 </c:choose>
@@ -86,7 +86,7 @@ Hamada
             
             <c:forEach items="${Courses.rows}" var="course">
                 <tr>
-                    <td>${course.cName}</td>
+                    <td>${course.cname}</td>
                     <td>${course.date}</td>
                     <td>
                         <c:if test="${User.TID == course.TID}" >
@@ -99,31 +99,6 @@ Hamada
                 </tr>
             </c:forEach>   
 
-
-            <%--
-            <c:if test="${param.Filter == 0 || empty param.Filter}" >
-            <sql:query var="AllCourses" sql="SELECT `course`.CID, `course`.cName FROM `course`"/>
-            <sql:query var="MyCourses" sql="SELECT `teach`.CID FROM `course` , `teach` WHERE `course`.CID = `teach`.CID AND `teach`.TID = ${User.TID}" />
-            <c:set value="1" var="Flag1"/>
-            <c:forEach items="${AllCourses.rows}" var="allcourse">
-            <tr>
-            <td>${allcourse.cName}</td>
-            <td>${allcourse.date}</td>
-            <c:forEach items="${myCourses.rows}" var="MyCourse">
-            <c:if test="${allcourse.CID} == ${MyCourse}">
-            <c:set value="1" var="Flaghgsdj "/>
-            </c:if>
-            </c:forEach>
-            <td>
-            <c:if test="${Flag && Flag1 == 1}">
-            <a href="CP.jsp?action=course&subaction=delete&CID=${allcourse.CID}">Delete</a>                              
-            </c:if>
-            <a href="CP.jsp?action=course&subaction=add&CID=${allcourse.CID}">Add</a>
-            </td>
-            </tr>
-            </c:forEach>  
-            </c:if>
-            --%>
         </table>
     </table>
 </form>

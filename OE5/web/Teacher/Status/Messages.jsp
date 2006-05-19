@@ -30,7 +30,7 @@ Abbas Adel
 <c:set var="subsectionTitle" value="Inbox" scope="request"/>
 
 <sql:query var="NewMessages">
-    SELECT Message.message, Message.ID, Message.MID, Message.Type, Message.mdate 
+    SELECT Message.message, Message.ID, Message.MID, Message.type, Message.mdate 
     FROM Message, Teacher
     WHERE Message.UID = Teacher.TID AND Message.User = 'teacher' AND Message.UID = ?
     AND Message.mdate > ?
@@ -56,7 +56,7 @@ Abbas Adel
 </c:if>
 
 <sql:query var="OldMessages">
-    SELECT Message.message, Message.ID, Message.MID, Message.Type, Message.mdate 
+    SELECT Message.message, Message.ID, Message.MID, Message.type, Message.mdate 
     FROM Message, Teacher
     WHERE Message.UID = Teacher.TID AND Message.User = 'teacher' AND Message.UID = ?
     AND Message.mdate <= ?

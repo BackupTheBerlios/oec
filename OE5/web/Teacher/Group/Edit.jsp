@@ -79,8 +79,8 @@ Islam Negm
         </c:forEach>--%>
         <%-----------------------------------------------------------------------%>       
         <sql:query var="MyStudents" >
-            SELECT `student`.SNAME ,`student`.SID
-            FROM `student`             
+            SELECT `Student`.sname ,`Student`.SID
+            FROM `Student`             
         </sql:query>
          
         <c:forEach items="${MyStudents.rows}" var="student">

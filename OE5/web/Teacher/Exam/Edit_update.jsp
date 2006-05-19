@@ -42,14 +42,14 @@ Hamada
     ${row}
 </c:forEach> --%>
  <sql:update>
-    DELETE FROM `takeexam`
-    WHERE `takeexam`.EID=?
+    DELETE FROM `TakeExam`
+    WHERE `TakeExam`.EID=?
     <sql:param value="${param.EID}"/>
 </sql:update>
 
 <sql:update >
-    UPDATE Exam SET `exam`.ename = ?
-    WHERE `exam`.EID = ?   
+    UPDATE Exam SET `Exam`.ename = ?
+    WHERE `Exam`.EID = ?   
     <sql:param value="${param.ename} "/>
     <sql:param value="${param.EID}"/>
 </sql:update>

@@ -13,11 +13,11 @@
                 <th width="10%">Grade </th>              
             </tr>
             <sql:query var="Exams">
-SELECT Exam.EID, Exam.ename, Course.cname, Teacher.tname, submitExam.StartDate, submitExam.EndDate, mark, grade
-                FROM Exam, Student, `assign`,  submitExam, course, teach, teacher, `result`
-                WHERE  `result`.SID = Student.SID AND Student.SID = `assign`.SID AND `assign`.GID = submitExam.GID
-                AND `submitExam`.EID = exam.EID AND exam.CID = course.CID AND exam.TID = teacher.TID AND course.CID = teach.CID 
-                AND teach.TID = teacher.TID 
+SELECT Exam.EID, Exam.ename, Course.cname, Teacher.tname, submitExam.startdate, submitExam.enddate, mark, grade
+                FROM Exam, Student, `Assign`,  SubmitExam, Course, Teach, Teacher, `Result`
+                WHERE  `Result`.SID = Student.SID AND Student.SID = `Assign`.SID AND `Assign`.GID = SubmitExam.GID
+                AND `SubmitExam`.EID = Exam.EID AND Exam.CID = Course.CID AND Exam.TID = Teacher.TID AND Course.CID = Teach.CID 
+                AND Teach.TID = Teacher.TID 
                 AND Student.SID = ${User.SID}
                 
             </sql:query>
@@ -25,11 +25,11 @@ SELECT Exam.EID, Exam.ename, Course.cname, Teacher.tname, submitExam.StartDate, 
             
             <c:forEach items="${Exams.rows}" var="Exam">
                 <tr>
-                    <td>${Exam.EName}</td>
-                    <td>${Exam.CName}</td>
-                    <td>${Exam.TName}</td>
-                    <td align="center" nowrap="nowrap">${Exam.startDate}</td>
-                    <td align="center" nowrap="nowrap">${Exam.endDate}</td>
+                    <td>${Exam.ename}</td>
+                    <td>${Exam.cname}</td>
+                    <td>${Exam.tname}</td>
+                    <td align="center" nowrap="nowrap">${Exam.startdate}</td>
+                    <td align="center" nowrap="nowrap">${Exam.enddate}</td>
                     <td align="center">${Exam.mark}</td>
                     <td align="center">${Exam.grade}</td>
                 </tr>

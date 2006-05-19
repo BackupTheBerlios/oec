@@ -39,26 +39,26 @@ Islam Negm
         
 
 <sql:update var="DeletedQuestion">
-    DELETE FROM `takeexam`
-    WHERE `takeexam`.EID=?
+    DELETE FROM `TakeExam`
+    WHERE `TakeExam`.EID=?
     <sql:param value="${param.EID}"/>
 </sql:update>
 
 <sql:update var="Deletedgroups">
-    DELETE FROM `submitexam`
-    WHERE `submitexam`.EID=?
+    DELETE FROM `SubmitExam`
+    WHERE `SubmitExam`.EID=?
     <sql:param value="${param.EID}"/>
 </sql:update>
 
 <sql:update var="Deletedresults">
-    DELETE FROM `result`
-    WHERE `result`.EID=?
+    DELETE FROM `Result`
+    WHERE `Result`.EID=?
     <sql:param value="${param.EID}"/>
 </sql:update>
 
 <sql:update var="DeletedExam">
-    DELETE FROM `exam`
-    WHERE `exam`.EID=?
+    DELETE FROM `Exam`
+    WHERE `Exam`.EID=?
     <sql:param value="${param.EID}"/>
 </sql:update>
 

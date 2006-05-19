@@ -52,24 +52,24 @@ Hamada
                         <th>Action</th>
                     </tr>
                     <sql:query var="students">
-                        SELECT   student.SID, student.SName, assign.GID
-                        FROM student,assign
-                        WHERE student.SID=assign.SID
-                        AND assign.GID  in(SELECT `group`.GID FROM `group` 
+                        SELECT   Student.SID, Student.sname, `Assign`.GID
+                        FROM Student,`Assign`
+                        WHERE Student.SID=`Assign`.SID
+                        AND `Assign`.GID  IN(SELECT `Group`.GID FROM `Group` 
                                
                         <c:choose>
                             <c:when test="${param.GID==0 || empty param.GID}">
-                                WHERE `group`.TID=?
+                                WHERE `Group`.TID=?
                                 <sql:param value="${User.TID}" />                                                 
                             </c:when>
-                            <c:when test="${param.GID==assign.GID}">
-                                WHERE `group`.TID=?
+                            <c:when test="${param.GID==Assign.GID}">
+                                WHERE `Group`.TID=?
                                 <sql:param value="${User.TID}" />
                                 AND `group`.GID=?
                                 <sql:param value="${param.GID}"/>
                             </c:when>                
                         </c:choose>
-                        ) GROUP BY student.SID
+                        ) GROUP BY Student.SID
                     </sql:query>
                    
                     
@@ -78,7 +78,7 @@ Hamada
                     <c:forEach items="${students.rows}" var="student">
                         <sql:query var="group" >  
                         SELECT COUNT(*) AS `count` FROM 
-                        `assign`
+                        `Assign`
                         WHERE SID=?
                         <sql:param value="${student.SID}"/>  
                     </sql:query>                             

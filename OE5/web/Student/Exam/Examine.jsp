@@ -56,7 +56,7 @@ TO DO:
             </th>
         </tr>
         <sql:query var="Questions">
-            SELECT question.QID, question.question
+            SELECT Question.QID, Question.question
             FROM Question, TakeExam, SubmitExam
             WHERE TakeExam.QID = Question.QID AND TakeExam.EID = SubmitExam.EID AND SubmitExam.SEID = ${param.SEID}
         </sql:query>

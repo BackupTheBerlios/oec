@@ -46,7 +46,7 @@ Abbas Adel
           <c:forEach items="${Students.rows}" var="Student">
           <tr>
             <td><input name="SID" type="checkbox" value="${Student.SID}" /></td>
-            <td>${Student.Sname} </td>
+            <td>${Student.sname} </td>
             <td>${Student.date}</td>
           </tr>
           </c:forEach>

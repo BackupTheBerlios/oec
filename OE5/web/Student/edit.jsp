@@ -63,12 +63,12 @@ Abbas Adel
     <c:when test="${param.action == 'update'}">
         <sql:update>
             UPDATE Student
-            SET Password = ?, 
-            sName = ?, 
-            Email = ?, 
-            Birth = ?,
-            Tell = ?,
-            Address = ?
+            SET password = ?, 
+            sname = ?, 
+            email = ?, 
+            birth = ?,
+            tell = ?,
+            address = ?
             WHERE SID = ?
             <sql:param value="${param.password}" />
             <sql:param value="${param.name}" />

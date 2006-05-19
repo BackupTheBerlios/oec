@@ -46,7 +46,7 @@ Ahmed Tanahy
 
     <c:if test="${!empty param[mySelectedOption]}" >
         <sql:update>
-            INSERT INTO `question` VALUES(?, ?, ?, ?, ?, DEFAULT)
+            INSERT INTO `Question` VALUES(?, ?, ?, ?, ?, DEFAULT)
             <sql:param value="${MXAQID.rows[0].QID+1+question}" />
             <sql:param value="${param.CID}" />
             <sql:param value="${param[mySelectedOption]}" />   
@@ -58,7 +58,7 @@ Ahmed Tanahy
             <c:set var="myquestion"  value="option[${question+1}]" />  
             <c:if test="${!empty paramValues[myquestion][count]}">
                 <sql:update>
-                    INSERT INTO `option` VALUES(?,?,?)
+                    INSERT INTO `Option` VALUES(?,?,?)
                     <sql:param value="${count+1}" />
                     <sql:param value="${MXAQID.rows[0].QID+1+question}" />
                     <sql:param value="${paramValues[myquestion][count]}" />

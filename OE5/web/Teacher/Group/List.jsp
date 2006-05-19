@@ -26,14 +26,14 @@ Islam Negm
 <c:set var="subsectionTitle" value="List Groups" scope="request"/>
 
      <sql:query var="groups">
-         SELECT `group`.GID,`group`.gname,`group`.tid,`teacher`.tname,COUNT(`assign`.sid) AS `count`,`group`.gdate
-         FROM `group`,`assign`,`teacher`      
+         SELECT `Group`.GID,`Group`.gname,`Group`.TID,`Teacher`.tname,COUNT(`Assign`.SID) AS `count`,`Group`.gdate
+         FROM `Group`,`Assign`,`Teacher`      
          WHERE
          <c:if test="${param.FTID > 0  }" >
-             `teacher`.TID= ?  AND  
+             `Teacher`.TID= ?  AND  
              <sql:param value="${param.FTID}" />   
          </c:if>
-         `teacher`.TID = `group`.TID  AND `group`.GID = `assign`.GID
+         `Teacher`.TID = `Group`.TID  AND `Group`.GID = `Assign`.GID
          GROUP BY `Assign`.GID                                                                        
      </sql:query>    
                                                
@@ -54,7 +54,7 @@ Islam Negm
                 <label></label>
                 <label> Filter by:</label>
                 
-                <sql:query  var="Groups" sql="SELECT DISTINCT `teacher`.TID,`teacher`.TName  FROM `Group`,`teacher` where `Group`.tid=`teacher`.tid;"  />
+                <sql:query  var="Groups" sql="SELECT DISTINCT `Teacher`.TID,`Teacher`.tname  FROM `Group`,`Teacher` WHERE  `Group`.TID =`Teacher`.TID;"  />
                 <select name="FGID" onchange="MM_jumpMenu('parent',this,0)">
                     <option value="CP.jsp?action=group&subaction=list&FTID=0">All</option>
                     <c:forEach items="${Groups.rows}" var="MyGroup">--!>

@@ -50,21 +50,21 @@ TO DO:
     
     <%-- List teacher's courses here --%>
     <sql:query  var="questionoptions"> 
-        SELECT `option`.OID ,`option`.`oname`,`question`.question , `question`.QID
-        FROM `teacher`,`course`,`question`,`option`
-        WHERE `teacher`.TID=`question`.TID
-        AND `course`.CID =?
-        AND `question`.QID = ?
-        AND `question`.TID = `teacher`.TID
-        AND `question`.CID = `course`.CID
-        AND `option`.QID = `question`.QID
+        SELECT `Option`.OID ,`Option`.`oname`,`Question`.question , `Question`.QID
+        FROM `Teacher`,`Course`,`Question`,`Option`
+        WHERE `Teacher`.TID=`Question`.TID
+        AND `Course`.CID =?
+        AND `Question`.QID = ?
+        AND `Question`.TID = `Teacher`.TID
+        AND `Question`.CID = `Course`.CID
+        AND `Option`.QID = `Question`.QID
         <sql:param value="${param.CID}" />
         <sql:param value="${param.QID}" />
     </sql:query>
     <sql:query var="Correctanswer">
         SELECT OID
-        FROM `question`
-        WHERE `question`.QID = ?
+        FROM `Question`
+        WHERE `Question`.QID = ?
         <sql:param value="${param.QID}"/>
     </sql:query>
     <p>

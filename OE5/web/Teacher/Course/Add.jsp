@@ -41,7 +41,7 @@ Hamada
 
 
 <sql:update>
-    INSERT INTO teach
+    INSERT INTO Teach
     VALUES(?,?,NULL)
     <sql:param value="${param.CID}"/>
     <sql:param value="${User.TID}"/>

@@ -40,8 +40,8 @@ Hamada
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 <sql:update var = "DeltedOptions">
-    DELETE FROM `option`
-    WHERE `option`.QID = ?
+    DELETE FROM `Option`
+    WHERE `Option`.QID = ?
     <sql:param value="${param.QID}" />
 </sql:update>
 <%--
@@ -56,7 +56,7 @@ Hamada
     <c:set var="mySelectedOption"  value="selectedOption[${param.QID}]" />   
     <c:if test="${!empty param[mySelectedOption]}" >
         <sql:update>
-            UPDATE `question` SET question = ? , OID = ? , CID = ? 
+            UPDATE `Question` SET question = ? , OID = ? , CID = ? 
             WHERE QID = ?
             <sql:param value="${param.question}" />
             <sql:param value="${param[mySelectedOption]}" />               
@@ -68,7 +68,7 @@ Hamada
             <c:set var="myquestion"  value="option[${param.QID}]" />  
             <c:if test="${!empty paramValues[myquestion][count]}">
                 <sql:update>
-                    INSERT INTO `option` VALUES(?,?,?)
+                    INSERT INTO `Option` VALUES(?,?,?)
                     <sql:param value="${count+1}" />
                     <sql:param value="${param.QID}" />
                     <sql:param value="${paramValues[myquestion][count]}" />
