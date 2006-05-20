@@ -16,6 +16,7 @@ Abbas Adel
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@page  errorPage="/index.jsp" %>
 
 <c:if test="${!empty redirect}"><c:redirect url="CP.jsp?action=${param.redirect}&subaction=${param.to}"/></c:if>
 

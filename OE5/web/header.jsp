@@ -19,7 +19,7 @@
                   <a href="/OE/index.jsp">Home</a> - <a href="/OE/logout.jsp">Logout</a> 
               </c:when>
               <c:otherwise>
-                  <form action="login.jsp" method="post" onsubmit="MM_validateForm('ID','','R','password','','R');return document.MM_returnValue">
+                  <form name="login" action="login.jsp" method="post" onsubmit="MM_validateForm('ID','','R','password','','R');return document.MM_returnValue">
                       <label>Your ID:</label>
                       <input name="ID" type="text" size="10" maxlength="20" />
                       <label>Password:</label>

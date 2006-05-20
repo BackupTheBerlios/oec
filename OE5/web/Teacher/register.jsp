@@ -37,6 +37,7 @@ Abbas Adel
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@page  errorPage="/index.jsp" %>
 
 <jsp:include page="/header.jsp" />
 <h1>Teacher Registration</h1>

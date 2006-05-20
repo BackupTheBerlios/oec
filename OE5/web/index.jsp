@@ -16,13 +16,13 @@
         <tr>
           <td height="188" align="center"><p>&nbsp;</p>
             <p>
-              <a href="Student/register.jsp"><img src="images/student.png" alt="Student" width="256" height="256" border="0" /></a>
+              <a href="Student/register.jsp"><img src="/OE/images/student.png" alt="Student" width="256" height="256" border="0" /></a>
               <br />
               Student Registration
               <a href="Student/register.jsp">here</a>
               .</p>
             <p>&nbsp;</p></td>
-          <td align="center"><a href="Teacher/register.jsp"><img src="images/teacher.png" alt="Teacher" width="256" height="256" border="0" /></a>
+          <td align="center"><a href="Teacher/register.jsp"><img src="/OE/images/teacher.png" alt="Teacher" width="256" height="256" border="0" /></a>
             <br />
             Teacher Registration
             <a href="Teacher/register.jsp">here</a>
