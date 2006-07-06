@@ -9,6 +9,7 @@
     </c:when>
   </c:choose>
 </c:if>
+
 <jsp:include page="/header.jsp" />
 <h1>Welcome <em> to OEC</em></h1>
 <p>If this is your first visit, please register to enjoy our services.</p>
