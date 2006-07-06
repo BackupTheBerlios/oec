@@ -36,9 +36,11 @@ Islam Negm
 
 <c:set var="subsectionTitle" value="Add New Exam" scope="request"/>
 
+
 <c:forEach items="${param}" var ="row">
     ${row}
 </c:forEach>
+
 
  <sql:update>
      UPDATE `Group` SET `Group`.GName=?   WHERE `Group`.GID=?
